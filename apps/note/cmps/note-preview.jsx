@@ -1,4 +1,5 @@
 
+
 export function NotePreview({ note }) {
 
     const todos = note.info.todos
@@ -17,12 +18,21 @@ export function NotePreview({ note }) {
         return todoList
     }
 
+    const { id, type, url, backgroundColor, title} = note
 
 
-    return <article className="note-preview gallery-item">
-        <h3>{note.type}</h3>
+
+    return <article className="note-preview gallery-item" style={{backgroundColor: note.backgroundColor}}>
+        {url && (
+            <div className="url-container">
+                {url.includes('image') && <img src={note.info.url} />}
+
+            </div>
+        )}
         <h2>{note.info.txt}</h2>
         <h2>{note.info.title}</h2>
+        <h3>{note.info.label}</h3>
+        <img src={note.info.url}/>
         {finalList}
     </article>
 }
