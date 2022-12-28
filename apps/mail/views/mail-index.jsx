@@ -26,7 +26,7 @@ export function MailIndex() {
         })
     }
 
-    return <div>mail app
+    return <div className="mail-index">
         <MailNav />
         <MailList mails={mails} />
     </div>
