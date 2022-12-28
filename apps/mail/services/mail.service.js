@@ -65,7 +65,7 @@ function getDefaultFilter() {
 }
 
 function _creatMails() {
-    debugger
+    // debugger
     let mails = utilService.loadFromStorage(MAIL_KEY)
     if (!mails || !mails.length) {
         mails = [
