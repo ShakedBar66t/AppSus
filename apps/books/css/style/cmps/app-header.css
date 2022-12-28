@@ -1,0 +1,28 @@
+.app-header {
+  background-color: var(--clr1);
+  color: var(--clr2bg);
+}
+
+.app-nav {
+  display: flex;
+  gap: 15px;
+  padding: 0.5rem;
+}
+
+.app-header .header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-header .app-nav .active, nav .active {
+  color: violet;
+
+}
+
+
+@media(max-width: 720px) {
+  .app-header {
+    color: var(--clr2bg);
+  }
+}
