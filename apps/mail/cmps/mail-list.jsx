@@ -1,8 +1,13 @@
 import { MailPreview } from "./mail-preview.jsx"
+const { useParams, Link } = ReactRouterDOM
 
 
 export function MailList({ mails }) {
-    console.log(mails)
+
+    const params = useParams()
+    const values = Object.values(params);
+    const param = values[0];
+    // console.log(paramValue)
     return <table border="0">
         <thead className="table-head">
             <tr>
@@ -13,7 +18,7 @@ export function MailList({ mails }) {
             </tr>
         </thead>
         <tbody>
-            {mails.map(mail => <MailPreview key={mail.id} mail={mail} />)}
+            {mails.map(mail => <MailPreview param={param} key={mail.id} mail={mail} />)}
         </tbody>
     </table>
 

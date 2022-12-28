@@ -1,22 +1,33 @@
 .mail-preview {
-    background-color: #dae2ee;
+    background-color: #ffffff;
     height: 35px;
     font-weight: bold;
+    display: grid;
+    grid-template-columns: 48px 1fr 1fr 1fr;
+    align-items: center;
+    /* padding: 16px; */
+    border-bottom: 1px solid rgb(213, 190, 190);
 }
 
 .mail-preview:hover {
-
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.459);
 }
 
+.mail-preview td {
+    min-width: 155px;
+}
+
 .mail-preview.read td {
-    background-color: #2a67c3;
+    background-color: #f2f6fc;
     font-weight: lighter;
 }
 
 .mail-preview.read {
-    background-color: #2a67c3;
+    background-color: #f2f6fc;
+}
 
+.checked {
+    background-color: #c2dbff;
 }
 
 table {
@@ -24,27 +35,17 @@ table {
     cursor: pointer;
 }
 
-tr.mail-preview {
-    display: grid;
-    grid-template-columns: 48px 1fr 1fr 1fr;
-    align-items: center;
-    padding: 16px;
-    border-bottom: 1px solid rgb(213, 190, 190);
+.fa.fa-star {
+    color: #f7cb4d;
+    /* background-color: red; */
 }
 
-tr input[type="checkbox"] {
-    display: none;
+.fa.fa-star :hover {
+    color: #1a1812;
+    /* background-color: red; */
 }
 
-tr input[type="checkbox"]+label {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 4px;
-    margin-right: 8px;
-}
-
-tr input[type="checkbox"]:checked+label {
-    background-color: rgb(0, 0, 0);
+.fa :hover {
+    color: #f7cb4d;
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.2);
 }

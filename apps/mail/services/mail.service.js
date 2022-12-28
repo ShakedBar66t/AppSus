@@ -18,17 +18,17 @@ export const mailService = {
 }
 
 function query(filterBy = getDefaultFilter()) {
+    debugger
     return storageService.query(MAIL_KEY)
-    // .then(mails => {
-    //     if (filterBy.txt) {
-    //         const regex = new RegExp(filterBy.txt, 'i')
-    //         mails = mails.filter(mail => regex.test(mail.title))
-    //     }
-    //     if (filterBy.maxPrice) {
-    //         mails = mails.filter(mail => mail.listPrice.amount <= filterBy.maxPrice)
-    //     }
-    //     return mails
-    // })
+        .then(mails => {
+            if (filterBy === 'starred') {
+                mails = mails.filter(mail => mail.stared === true)
+            }
+            // if (filterBy==='') {
+            //     mails = mails.filter(mail => mail.listPrice.amount <= filterBy.maxPrice)
+            // }
+            return mails
+        })
 }
 
 function get(mailId) {
@@ -50,13 +50,15 @@ function save(mail) {
     }
 }
 
-function getEmptyMail(title = '', amount = '') {
+function getEmptyMail() {
 
     return {
         id: 'e101',
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes',
         isRead: false,
+        isChecked: false,
+        isStared: false,
         sentAt: 1551133930594,
         to: 'momo@momo.com'
     }
@@ -83,8 +85,8 @@ function _creatMails() {
     utilService.saveToStorage(MAIL_KEY, mails)
 }
 
-function _createMail(title, listPrice = 250) {
-    const mail = getEmptyMail(title, listPrice)
+function _createMail() {
+    const mail = getEmptyMail()
     mail.id = utilService.makeId()
     return mail
 }
