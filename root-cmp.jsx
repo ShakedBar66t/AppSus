@@ -1,6 +1,9 @@
 const { Route, Routes } = ReactRouterDOM
 const Router = ReactRouterDOM.HashRouter
 
+import { BookIndex } from "./apps/books/pages/book-index.jsx"
+import { BookDetails } from "./apps/books/pages/book-details.jsx"
+import { BookEdit } from "./apps/books/pages/book-edit.jsx"
 import { AppHeader } from "./cmps/app-header.jsx"
 import { About } from "./views/about.jsx"
 import { Home } from "./views/home.jsx"
@@ -18,6 +21,7 @@ export function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/mail" element={<MailIndex />} />
                 <Route path="/note" element={<NoteIndex />} />
+                <Route path="/book" element={<BookIndex />} />
             </Routes>
         </section>
     </Router>
