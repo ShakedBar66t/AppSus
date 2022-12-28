@@ -1,4 +1,6 @@
 import { utilService } from '../../../services/util.service.js'
+import { storageService } from '../../../services/async-storage.service.js'
+
 
 
 const NOTE_KEY = 'notesDB'
@@ -9,12 +11,7 @@ export const noteService = {
 }
 
 function query(){
-    let notes = _loadFromStorage()
-    if (!notes) {
-        notes = _createNotes()
-        _saveToStorage(notes)
-    }
-    return Promise.resolve(notes)
+    return storageService.query(NOTE_KEY)
 }
 
 function _saveToStorage(notes){

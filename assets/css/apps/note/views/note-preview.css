@@ -1,0 +1,7 @@
+.gallery-item li {
+    margin-bottom: 0.1rem;
+    font-family: cursive;
+    width: fit-content;
+    font-size: 1rem;
+    cursor: text;
+}
