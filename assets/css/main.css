@@ -23,6 +23,11 @@
 
 /* @import './apps/mail/cmps/mail-list.css'; */
 
+<<<<<<< HEAD
 /* notes */
 @import '../css/apps/note/views/note-preview.css';
 @import '../css/apps/note/views/note-list.css'
+=======
+/* apps */
+@import './apps/mail/main.css'
+>>>>>>> origin/main
