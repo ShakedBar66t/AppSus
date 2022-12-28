@@ -1,8 +1,10 @@
-import { utilService } from './utilService.js'
+import { utilService } from '../../../services/util.service.js'
+
 
 const NOTE_KEY = 'notesDB'
+_createNotes()
 
-export const noteSevice = {
+export const noteService = {
     query,
 }
 
@@ -16,11 +18,11 @@ function query(){
 }
 
 function _saveToStorage(notes){
-    storageService.saveToStorage(NOTE_KEY, notes)
+    utilService.saveToStorage(NOTE_KEY, notes)
 }
 
 function _loadFromStorage(){
-    return storageService.loadFromStorage(NOTE_KEY)
+    return utilService.loadFromStorage(NOTE_KEY)
 }
 
 function _createNotes(){
@@ -45,8 +47,17 @@ function _createNotes(){
                     backgroundColor: "#00d"
                 }
             },{
-                
+                id:"n103",
+                type: "note-todos",
+                info: {
+                    label: "Get my stuff together",
+                    todos:[
+                        {txt: "Driving license", doneAt: null},
+                        { txt: "Coding power", doneAt: 187111111}
+                    ]
+                }
             }
         ]
+        utilService.saveToStorage(NOTE_KEY, notes)
     }
 }
