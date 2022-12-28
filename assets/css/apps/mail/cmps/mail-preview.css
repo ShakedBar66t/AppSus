@@ -1,0 +1,50 @@
+.mail-preview {
+    background-color: #dae2ee;
+    height: 35px;
+    font-weight: bold;
+}
+
+.mail-preview:hover {
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.459);
+}
+
+.mail-preview.read td {
+    background-color: #2a67c3;
+    font-weight: lighter;
+}
+
+.mail-preview.read {
+    background-color: #2a67c3;
+
+}
+
+table {
+    width: 80%;
+    cursor: pointer;
+}
+
+tr.mail-preview {
+    display: grid;
+    grid-template-columns: 48px 1fr 1fr 1fr;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid rgb(213, 190, 190);
+}
+
+tr input[type="checkbox"] {
+    display: none;
+}
+
+tr input[type="checkbox"]+label {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 4px;
+    margin-right: 8px;
+}
+
+tr input[type="checkbox"]:checked+label {
+    background-color: rgb(0, 0, 0);
+}

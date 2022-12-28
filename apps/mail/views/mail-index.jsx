@@ -14,14 +14,11 @@ export function MailIndex() {
     useEffect(() => {
         // setIsLoading(true)
         loadMails()
-        // console.log('from use effec ', filterBy)
     }, [filterBy])
 
     function loadMails() {
-        // console.log(filterBy)
         // setIsLoading(false)
         mailService.query(filterBy).then(mailsToUpdate => {
-            // console.log(mailsToUpdate)
             setMails(mailsToUpdate)
         })
     }

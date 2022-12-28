@@ -3,9 +3,10 @@ import { MailPreview } from "./mail-preview.jsx"
 
 export function MailList({ mails }) {
     console.log(mails)
-    return <table border="1">
-        <thead>
+    return <table border="0">
+        <thead className="table-head">
             <tr>
+                <th></th>
                 <th>from </th>
                 <th>mail</th>
                 <th>time</th>
@@ -17,3 +18,4 @@ export function MailList({ mails }) {
     </table>
 
 }
+/// better is to filter by object keys like star or bin

@@ -1,0 +1,10 @@
+.mail-details {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    /* justify-content: center; */
+    justify-content: space-between;
+    height: 450px;
+    /* width: 450px; */
+    border: 1px solid black;
+}

@@ -8,15 +8,12 @@ import { showErrorMsg } from "../../../services/event-bus.service.js"
 export function MailDetails() {
 
     const { mailId } = useParams()
-    console.log(mailId)
-    console.log(mailId);
-    // loadMail();
     const [mail, setMail] = useState(null)
     const [nextMailId, setNextMailId] = useState(null)
     const navigate = useNavigate()
 
     useEffect(() => {
-        console.log('eeee')
+        // console.log('eeee')
         loadMail()
     }, [mailId])
 
@@ -35,7 +32,7 @@ export function MailDetails() {
     }
 
     if (!mail) return <div>Loading...</div>
-    return <div>
+    return <div className="mail-details">
         <h1>{mail.id}</h1>
         <h1>{mail.subject}</h1>
         <p>{mail.body}</p>

@@ -9,4 +9,14 @@
 @import "./cmps/mail-nav.css";
 
 /* views */
-@import './views/mail-index.css'
+@import './views/mail-index.css';
+@import './views/mail-details.css';
+
+
+
+/* rearange later */
+.clean-list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}

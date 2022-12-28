@@ -1,0 +1,15 @@
+.mail-nav {
+    border: 1px black solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.menu-item {
+    background-color: aliceblue;
+    flex: grow;
+}
+
+.menu-item.active {
+    background-color: rgb(95, 95, 165);
+}

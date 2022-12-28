@@ -21,7 +21,12 @@ export function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
 
-                <Route path="/mail" element={<MailIndex />} />
+                <Route path="/mail/inbox/" element={<MailIndex />} >
+                    <Route path="/mail/inbox/starred" element={<MailIndex />} />
+                    <Route path="/mail/inbox/sent" element={<MailIndex />} />
+                    <Route path="/mail/inbox/drafts" element={<MailIndex />} />
+                    <Route path="/mail/inbox/bin" element={<MailIndex />} />
+                </Route>
                 <Route path="/details" element={<MailDetails />} />
                 <Route path="/details/:mailId" element={<MailDetails />} />
 
@@ -30,5 +35,5 @@ export function App() {
                 <Route path="/book" element={<BookIndex />} />
             </Routes>
         </section>
-    </Router>
+    </Router >
 }
