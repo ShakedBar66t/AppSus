@@ -32,6 +32,8 @@ function query(filterBy = getDefaultFilter()) {
 }
 
 function get(mailId) {
+    // debugger
+    console.log(storageService.get(MAIL_KEY, mailId))
     return storageService.get(MAIL_KEY, mailId)
     // return axios.get(MAIL_KEY, mailId)
 }
@@ -65,7 +67,6 @@ function getDefaultFilter() {
 }
 
 function _creatMails() {
-    debugger
     let mails = utilService.loadFromStorage(MAIL_KEY)
     if (!mails || !mails.length) {
         mails = [

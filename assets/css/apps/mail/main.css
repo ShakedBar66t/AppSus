@@ -1,0 +1,12 @@
+/* base */
+
+@import "./base/layout.css";
+
+/* cmps:  */
+
+@import "./cmps/mail-preview.css";
+@import "./cmps/mail-list.css";
+@import "./cmps/mail-nav.css";
+
+/* views */
+@import './views/mail-index.css'
