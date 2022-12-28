@@ -7,8 +7,6 @@ import { showErrorMsg } from "../../../services/event-bus.service.js"
 
 export function MailDetails() {
 
-
-
     const { mailId } = useParams()
     console.log(mailId)
     console.log(mailId);
