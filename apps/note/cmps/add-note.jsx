@@ -5,9 +5,8 @@ import { noteService } from "../services/note.service.js"
 const { useState, useRef } = React
 const { Link } = ReactRouterDOM
 
-export function AddNote({ onAddNote }) {
+export function AddNote({ updateNotes }) {
     // console.log(onAddNote)
-
     const titleRef = useRef(null)
     const txtRef = useRef(null)
     const colorRef = useRef(null)
@@ -27,6 +26,7 @@ export function AddNote({ onAddNote }) {
     })
 
     function onSaveNote(ev) {
+        updateNotes()
         console.log('ohados kabanos')
         ev.preventDefault()
         noteService.saveNote(note).then(() => {

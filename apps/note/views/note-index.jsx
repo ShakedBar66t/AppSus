@@ -1,3 +1,4 @@
+
 const { useState, useEffect } = React
 
 import { AddNote } from "../cmps/add-note.jsx"
@@ -10,16 +11,16 @@ export function NoteIndex() {
 
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
     const [notes, setNotes] = useState([])
+    const [updateFromAdd, setupdateFromAdd] = useState([false])
 
     useEffect(() => {
         // debugger
         console.log('start')
         loadNotes()
-    }, [notes])
+    }, [updateFromAdd])
 
     function updateNotes() {
-        console.log('hi')
-        // setNotes(notes)
+        setupdateFromAdd(!updateFromAdd)
     }
 
     function loadNotes() {
