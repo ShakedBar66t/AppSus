@@ -4,4 +4,12 @@
     width: fit-content;
     font-size: 1rem;
     cursor: text;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.note-preview h1 {
+    font-size: 1rem;
+    margin-bottom: 6px;
 }

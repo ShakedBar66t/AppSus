@@ -26,6 +26,7 @@
 /* notes */
 @import '../css/apps/note/views/note-preview.css';
 @import '../css/apps/note/views/note-list.css';
+@import '../css/apps/note/views/add-note.css';
 
 /* mail */
 @import '../css/apps/mail/main.css'

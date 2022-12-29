@@ -8,7 +8,41 @@ _createNotes()
 
 export const noteService = {
     query,
-    getDefaultFilter
+    getDefaultFilter,
+    remove,
+    saveNote
+}
+
+function _update(noteToUpdate){
+    console.log('update')
+    console.log(noteToUpdate)
+    let notes = _loadFromStorage()
+    notes = notes.map((note) => 
+    note.id === noteToUpdate.id ? noteToUpdate : note
+    )
+    _saveToStorage(notes)
+    return Promise.resolve()
+}
+
+function _add(noteToAdd){
+    let notes = _loadFromStorage()
+    const note = noteToAdd
+    note.id = utilService.makeId()
+    note.isPin = false
+    notes.unshift(note)
+    _saveToStorage(notes)
+    return Promise.resolve()
+}
+
+function saveNote(newNote){
+    if (newNote.id) _update(newNote)
+    else _add(newNote)
+    return Promise.resolve()
+}
+
+
+function remove(noteId){
+    return storageService.remove(NOTE_KEY, noteId)
 }
 
 function getDefaultFilter() {
