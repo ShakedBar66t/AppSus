@@ -8,7 +8,7 @@ const loggedinUser = {
     email: 'user@appsus.com',
     fullname: 'Mahatma Appsus'
 }
-_creatMails()
+_createMails()
 
 export const mailService = {
     query,
@@ -18,7 +18,8 @@ export const mailService = {
     getEmptyMail,
     getDefaultFilter,
     getNextMailId,
-    getPrevMailId
+    getPrevMailId,
+    addNewMail
 }
 
 function query(filterBy = getDefaultFilter()) {
@@ -54,11 +55,11 @@ function remove(mailId) {
 }
 
 function save(mail) {
-    if (mail.id) {
-        return storageService.put(MAIL_KEY, mail) ////// אם יש תשמור
-    } else {
-        return storageService.post(MAIL_KEY, mail) //// אם אין תיצור 
-    }
+    // if (mail.id) {
+    //     return storageService.put(MAIL_KEY, mail) ////// אם יש תשמור
+    // } else {
+    return storageService.post(MAIL_KEY, mail) //// אם אין תיצור 
+    // }
 }
 
 function getEmptyMail() {
@@ -81,7 +82,7 @@ function getDefaultFilter() {
     return { txt: '', maxPrice: '' }
 }
 
-function _creatMails() {
+function _createMails() {
     let mails = utilService.loadFromStorage(MAIL_KEY)
     if (!mails || !mails.length) {
         mails = [
@@ -122,17 +123,19 @@ function getPrevMailId(mailId) {
         })
 }
 
-function addNewMail(mail) {
+function addNewMail(recipients, subject, body) {
     const newMail = {
-        to: mail.recipients,
-        subject: mail.subject,
-        body: mail.body,
+        to: recipients,
+        subject,
+        body,
         isRead: true,
+        isChecked: false,
+        isStared: false,
+        isDeleted: false,
         sentAt: Date.now(),
         email: 'user@appsus.com',
         fullname: 'Mahatma Appsus',
-        lables: []
-
     }
-    return storageService.post(MAILS_KEY, newMail)
+    return storageService.post(MAIL_KEY, newMail)
 }
+
