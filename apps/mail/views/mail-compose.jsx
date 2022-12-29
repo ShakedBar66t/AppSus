@@ -24,7 +24,7 @@ export function MailCompose({ setIsOpen }) {
             <div className="MailCompose-content">
                 <form onSubmit={onSubmitMail}>
                     <button onClick={() => setIsOpen(false)}>X</button>
-                    <label htmlFor="vendor"> To: </label>
+                    <label htmlFor="to"> To: </label>
                     <input
                         type="text"
                         name="to"
@@ -33,7 +33,7 @@ export function MailCompose({ setIsOpen }) {
                         ref={elToRef} />
                     {console.log(elToRef)}
                     <hr />
-                    <label htmlFor="vendor">Subject: </label>
+                    <label htmlFor="subject">Subject: </label>
                     <input
                         type="text"
                         name="subject"
@@ -51,23 +51,3 @@ export function MailCompose({ setIsOpen }) {
         </div>
     )
 }
-
-{/* <form onSubmit={onSubmitFilter}>
-    <label htmlFor="vendor">Vendor:</label>
-    <input type="text"
-        id="vendor"
-        name="txt"
-        placeholder="By vendor"
-        value={filterByToEdit.txt}
-        onChange={handleChange}
-        ref={elInputRef}
-    />
-
-    <label htmlFor="minSpeed">Min speed:</label>
-    <input type="number"
-        id="minSpeed"
-        name="minSpeed"
-        placeholder="By min speed"
-        value={filterByToEdit.minSpeed}
-        onChange={handleChange}
-    /> */}
