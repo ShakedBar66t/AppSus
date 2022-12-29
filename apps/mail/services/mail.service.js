@@ -4,6 +4,10 @@ import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
 
 const MAIL_KEY = 'mailDB'
+const loggedinUser = {
+    email: 'user@appsus.com',
+    fullname: 'Mahatma Appsus'
+}
 _creatMails()
 
 export const mailService = {
@@ -18,7 +22,6 @@ export const mailService = {
 }
 
 function query(filterBy = getDefaultFilter()) {
-    debugger
     return storageService.query(MAIL_KEY)
         .then(mails => {
             if (filterBy === 'starred') {
@@ -31,14 +34,22 @@ function query(filterBy = getDefaultFilter()) {
         })
 }
 
+// const filterby = {
+//     status: 'inbox/sent/trash/draft',
+//     txt: 'puki', // no need to support complex text search
+//     isRead: true, // (optional property, if missing: show all)
+//     isStared: true, // (optional property, if missing: show all)
+//     lables: ['important', 'romantic'] // has any of the labels
+//    }
+
 function get(mailId) {
-    // debugger
     console.log(storageService.get(MAIL_KEY, mailId))
     return storageService.get(MAIL_KEY, mailId)
     // return axios.get(MAIL_KEY, mailId)
 }
 
 function remove(mailId) {
+    console.log(mailId)
     return storageService.remove(MAIL_KEY, mailId)
 }
 
@@ -59,8 +70,10 @@ function getEmptyMail() {
         isRead: false,
         isChecked: false,
         isStared: false,
+        isDeleted: false,
         sentAt: 1551133930594,
-        to: 'momo@momo.com'
+        from: 'momo@momo.com',
+        to: 'user@appsus.com'
     }
 }
 
@@ -107,4 +120,19 @@ function getPrevMailId(mailId) {
             if (idx === 0) idx = mails.length - 1
             return mails[idx - 1].id
         })
+}
+
+function addNewMail(mail) {
+    const newMail = {
+        to: mail.recipients,
+        subject: mail.subject,
+        body: mail.body,
+        isRead: true,
+        sentAt: Date.now(),
+        email: 'user@appsus.com',
+        fullname: 'Mahatma Appsus',
+        lables: []
+
+    }
+    return storageService.post(MAILS_KEY, newMail)
 }
