@@ -1,7 +1,7 @@
 
 export function Home() {
 
-    return <section className="home">
-        <h1>Welcome to home page!</h1>
+    return <section className="homepage-container">
+        <div className="background-image"></div>
     </section>
 }

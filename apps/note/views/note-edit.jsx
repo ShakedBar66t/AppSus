@@ -1,41 +1,32 @@
 import { uploadService } from '../../../services/upload.service.js'
 import { noteService } from '../services/note.service.js'
- const {useState} = React
+const { useState } = React
 
-export function NoteEdit() {
-
-    
-    const note = {
-        type: '',
-        txt: '',
-        file: '',
-        backgroundColor: '',
-        todos: '',
-        info: '',
-        title: ''
-    }
-    console.log(note)
-    const [noteToEdit, setNoteToEdit] = useState({note})
+export function NoteEdit({ updateNotes }) {
 
     function onSaveNote() {
 
     }
+    debugger
+    updateNotes()
 
-    function handleChange({target}) {
+    const [noteToEdit, setNoteToEdit] = useState({ note })
+
+    function handleChange({ target }) {
         const field = target.name
         console.log('field', field)
         const value = target.value
         console.log('value', value)
 
-        if ( field === 'file') {
+        if (field === 'file') {
             uploadService.readURL(target.files).then((uploadedFile) =>
-            useState((prevState) => ({
-                note: {...prevState.note, file:uploadedFile}
-            }))
+                useState((prevState) => ({
+                    note: { ...prevState.note, file: uploadedFile }
+                }))
             )
         }
         useState((prevState) => ({
-            note: {...prevState.note, [field]: value}
+            note: { ...prevState.note, [field]: value }
         }))
     }
     const { title, txt, file, backgroundColor } = note

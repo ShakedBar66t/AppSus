@@ -1,6 +1,6 @@
 import { NotePreview } from "./note-preview.jsx"
 
-export function NoteList({ notes, onRemoveNote }) {
+export function NoteList({ notes, onRemoveNote}) {
     console.log(notes)
 
     function onUpdateNote(noteId){
@@ -22,12 +22,6 @@ export function NoteList({ notes, onRemoveNote }) {
                 </div>
             </li>)
         }
-        {/* {notes.map(note =>
-            <NotePreview
-                note={note}
-                key={note.id}
-                />                
-        )} */}
     </section >
 
 }

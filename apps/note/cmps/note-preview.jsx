@@ -2,20 +2,17 @@
 
 export function NotePreview({ note }) {
 
-    function onRemoveNote(e, noteId){
-        onRemoveNote(noteId)
-    }
-
     const todos = note.info.todos
     // if(!note.info.todos) return <h1>Loading..</h1>
     if (note.info.todos) { var finalList = createTodos(todos) }
     // createTodos(todos)
-    console.log(finalList)
+
 
 
     function createTodos(todos) {
+        console.log('note.id', note.id)
         const todoList = todos.map(todo => {
-            return <ul>
+            return <ul key={todo.txt}>
                 <li>{todo.txt}</li>
             </ul>
         })
@@ -33,9 +30,9 @@ export function NotePreview({ note }) {
 
             </div>
         )} */}
+        <h2>{note.info.title}</h2>
         <h1>{note.info.txt}</h1>
-        <h1>{note.info.title}</h1>
-        <h1>{note.info.label}</h1>
+        <h2>{note.info.label}</h2>
         <img src={note.info.url} />
         {finalList}
     </article>

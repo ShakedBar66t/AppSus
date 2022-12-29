@@ -11,14 +11,16 @@ export function NoteIndex() {
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
     const [notes, setNotes] = useState([])
 
-function addNote(newNote){
-    
-}
-
-
     useEffect(() => {
+        // debugger
+        console.log('start')
         loadNotes()
-    }, [])
+    }, [notes])
+
+    function updateNotes() {
+        console.log('hi')
+        // setNotes(notes)
+    }
 
     function loadNotes() {
         noteService.query().then(notesToUpdate => {
@@ -40,11 +42,11 @@ function addNote(newNote){
 
 
     return <section className="note-index">
-        <AddNote onAdd={AddNote} />
-        <NoteFilter onSetFilter={onSetFilter} />
+        <AddNote updateNotes={updateNotes} />
+        {/* <NoteFilter onSetFilter={onSetFilter} /> */}
         <NoteList
             notes={notes}
-            onRemoveNote={onRemoveNote}/>
+            onRemoveNote={onRemoveNote} />
     </section>
 
 

@@ -1,0 +1,13 @@
+
+.homepage-container{
+    width: 100vw;
+    height: calc(100vh - 135px);
+    background-color: aqua;
+}
+
+.background-image{
+    background-image: url(../../img/home.jpg);
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}

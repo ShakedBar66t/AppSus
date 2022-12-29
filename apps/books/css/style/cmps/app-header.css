@@ -1,8 +1,8 @@
 .app-header {
+  height: 100px;
   background-color: var(--clr1);
   color: var(--clr2bg);
 }
-
 .app-nav {
   display: flex;
   gap: 15px;
