@@ -4,7 +4,7 @@ const { NavLink, Link, useParams } = ReactRouterDOM
 import { MailCompose } from '../views/mail-compose.jsx';
 
 export function MailNav() {
-    const [isComposeOpen, setIsComposeOpen] = useState(false);
+    const [isComposeOpen, setIsComposeOpen] = useState(false)
 
     return (<Fragment>
         <ul className="mail-nav clean-list">
@@ -13,7 +13,7 @@ export function MailNav() {
                     <i className="fa fa-pencil" aria-hidden="true" /> Compose
                 </button>
             </li>
-            <NavLink to="/mail/inbox/" className="menu-item">
+            <NavLink to="/mail/inbox/" className="menu-item ">
                 <i className="fa fa-envelope-open-o" aria-hidden="true" /> Inbox
             </NavLink>
             <NavLink to="/mail/inbox/starred" className="menu-item">
@@ -31,5 +31,5 @@ export function MailNav() {
         </ul>
         {isComposeOpen && <MailCompose setIsOpen={setIsComposeOpen} />}
     </Fragment>
-    );
+    )
 }

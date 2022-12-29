@@ -26,12 +26,11 @@ export function MailCompose({ setIsOpen }) {
                     <button onClick={() => setIsOpen(false)}>X</button>
                     <label htmlFor="to"> To: </label>
                     <input
-                        type="text"
+                        type="email"
                         name="to"
                         id="to"
                         placeholder="Recipients"
                         ref={elToRef} />
-                    {console.log(elToRef)}
                     <hr />
                     <label htmlFor="subject">Subject: </label>
                     <input

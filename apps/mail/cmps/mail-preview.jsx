@@ -6,7 +6,7 @@ import { mailService } from "../services/mail.service.js"
 export function MailPreview({ mail }) {
     const navigate = useNavigate()
 
-    const [change, setChange] = useState()
+    const [change, setChange] = useState(true)
     const status = creatStatus()
 
     function creatStatus() {
@@ -16,7 +16,10 @@ export function MailPreview({ mail }) {
         return param
     }
 
-    if (!status && mail.isDeleted) return
+    // console.log('from', mail.from=== mail.from === 'user@appsus.com')
+    if (!status && mail.from === 'user@appsus.com') return /////inbox
+    if (!status && mail.isDeleted || status === 'starred' && mail.isDeleted || status === 'sent' && mail.isDeleted) return ////// deleting the mail
+    if (status === 'sent' && !mail.to === 'user@appsus.com') return
     if (status === 'bin' && !mail.isDeleted) return
     if (status === 'starred' && !mail.isStared) return
 
@@ -30,12 +33,11 @@ export function MailPreview({ mail }) {
     }
 
     function generalChange(mail, keyToChange) {
-        if (keyToChange === 'isDeleted' && status === 'bin') {
-            console.log('removing ', mail.id)
+        if (keyToChange === 'isDeleted' && mail.isDeleted) {
             mailService.remove(mail.id)
         }
         mail[keyToChange] = !mail[keyToChange]
-        mailService.save(mail)
+        mailService.update(mail)
         setChange(!change)
     }
 
@@ -43,19 +45,34 @@ export function MailPreview({ mail }) {
         let className = 'mail-preview '
         className += (mail.isRead) ? 'read ' : ''
         className += (mail.isChecked) ? 'checked' : ''
+        if (mail.isStared) {
+            className += ' star-icon'
+        }
         return className
     }
 
+    function getMailSender(string) {
+        let words = string.split(' ')
+        for (let i = 0; i < words.length; i++) {
+            if (words[i].includes('@')) {
+                if (i > 0) {
+                    return words[i - 1]
+                }
+            }
+        }
+        return
+    }
+
     return <tr className={createClassName(mail)} >
-        <td onClick={() => generalChange(mail, 'isChecked')} className={(mail.isChecked) ? "fa fa-check-square-o check-box" : "fa fa-square-o"} ></td>
-        <td onClick={() => generalChange(mail, 'isStared')} className={(mail.isStared) ? "fa fa-star" : "fa fa-star-o star-box"}></td>
+        <td onClick={() => generalChange(mail, 'isChecked')} className={(mail.isChecked) ? "fa fa-check-square-o" : "fa fa-square-o"} ></td>
+        <td onClick={() => generalChange(mail, 'isStared')} className={(mail.isStared) ? "star fa fa-star " : "star fa fa-star-o star-box"}></td>
         <td className="sender" onClick={() => { changeIsRead(), navigate(`/details/${mail.id}`) }}>
-            id: {mail.id}</td>
+            {getMailSender(mail.from)}</td>
         <td className="subject" onClick={() => { changeIsRead(), navigate(`/details/${mail.id}`) }}>
-            Sub:{mail.subject} </td>
+            {mail.subject} </td>
         <td className="date" onClick={() => { changeIsRead(), navigate(`/details/${mail.id}`) }}>
-            at: {mail.sentAt}</td>
-        <td onClick={() => generalChange(mail, 'isRead')} className={(mail.isRead) ? "fa fa-envelope-o" : "fa fa-envelope-open-o"}></td>
-        <td onClick={() => generalChange(mail, 'isDeleted')} className="fa fa-trash"></td>
+            {mail.sentAt}</td>
+        <td onClick={() => generalChange(mail, 'isRead')} className={(mail.isRead) ? "envelope fa fa-envelope-o" : "envelope fa fa-envelope-open-o"}></td>
+        <td onClick={() => generalChange(mail, 'isDeleted')} className="trash fa fa-trash"></td>
     </tr >
 }

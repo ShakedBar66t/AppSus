@@ -3,27 +3,71 @@
     height: 35px;
     font-weight: bold;
     display: grid;
-    grid-template-columns: 1fr 1fr 18fr 18fr 18fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 6fr 18fr 18fr 1fr 1fr;
     align-items: center;
-    /* padding: 16px; */
     border-bottom: 1px solid rgb(213, 190, 190);
+}
+
+
+.subject {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.date {
+    text-align: right;
+}
+
+.envelope {
+    text-align: right;
+    margin-right: 10px;
 }
 
 .mail-preview:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.459);
+
 }
 
+.mail-preview:hover td:last-child,
+.mail-preview:hover td:nth-last-child(2) {
+    display: table-cell;
+    z-index: 1;
+}
+
+.mail-preview:hover .date,
+.mail-preview:hover .last-td {
+    width: 25px;
+}
+
+.mail-preview:hover .subject {
+    flex: 1;
+}
+
+td:last-child,
+td:nth-last-child(2) {
+    display: none;
+}
+
+/* 
 .mail-preview td {
     min-width: 6;
-}
+} */
 
-.mail-preview.read td {
+/* .mail-preview.read td {
     background-color: #f2f6fc;
     font-weight: lighter;
-}
+} */
 
 .mail-preview.read {
     background-color: #f2f6fc;
+}
+
+tr.read td.sender,
+tr.read td.subject,
+tr.read td.date {
+    background-color: #f2f6fc;
+    font-weight: lighter;
 }
 
 .checked {
@@ -35,17 +79,27 @@ table {
     cursor: pointer;
 }
 
-.fa.fa-star {
-    color: #f7cb4d;
-    /* background-color: red; */
+.mail-preview .star-icon {
+    font-weight: lighter;
 }
 
-.fa.fa-star :hover {
+.fa.fa-star {
+    color: #f7cb4d;
+}
+
+.fa.fa-star-o {
+    color: #f7cb4d;
+}
+
+.star :hover {
     color: #1a1812;
-    /* background-color: red; */
 }
 
 .fa :hover {
     color: #f7cb4d;
     box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.mail-preview:hover .date {
+    display: none;
 }

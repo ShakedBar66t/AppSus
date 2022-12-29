@@ -10,15 +10,6 @@ export function MailIndex() {
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
     const [mails, setMails] = useState([])
 
-    // debugger
-    // const params = useParams()
-    // const values = Object.values(params);
-    // const currParams = values[0];
-    // if (!currParams) return
-
-    // setFilterBy(currParams)
-    // const [isLoading, setIsLoading] = useState(false)
-
     useEffect(() => {
         // setIsLoading(true)
         loadMails()

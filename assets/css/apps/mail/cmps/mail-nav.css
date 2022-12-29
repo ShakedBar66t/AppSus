@@ -1,9 +1,11 @@
 .mail-nav {
+    /* position: fixed; */
     background-color: #f6f8fc;
     border: 1px black solid;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    height: 92vh;
 }
 
 .menu-item {

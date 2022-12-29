@@ -19,7 +19,8 @@ export const mailService = {
     getDefaultFilter,
     getNextMailId,
     getPrevMailId,
-    addNewMail
+    addNewMail,
+    update
 }
 
 function query(filterBy = getDefaultFilter()) {
@@ -55,11 +56,11 @@ function remove(mailId) {
 }
 
 function save(mail) {
-    // if (mail.id) {
-    //     return storageService.put(MAIL_KEY, mail) ////// אם יש תשמור
-    // } else {
     return storageService.post(MAIL_KEY, mail) //// אם אין תיצור 
-    // }
+}
+
+function update(mail) {
+    return storageService.put(MAIL_KEY, mail) //// אם יש תעדכן 
 }
 
 function getEmptyMail() {
@@ -86,14 +87,194 @@ function _createMails() {
     let mails = utilService.loadFromStorage(MAIL_KEY)
     if (!mails || !mails.length) {
         mails = [
+            {
+                id: utilService.makeId(),
+                to: 'HAIM@gmail.com',
+                subject: 'test',
+                body: 'big test',
+                isRead: false,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `08:43`,
+                from: 'Dropbox @dropbox.com',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `MOSHE @gmail.com`,
+                subject: 'Itai, נשארו רק עוד יומיים לקבל בחזרה עד 400 ₪! ⌛',
+                body: 'big test',
+                isRead: false,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `28 Dec`,
+                from: `Booking.com @booking.com`,
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `SIMCHA@gmail.com`,
+                subject: '[Slack] New messages from Avi Isakov - Coding Academy and Shaked Barsheshet in Coding Academy - NOV 22',
+                body: `You have a new mention in Coding Academy - NOV 22 (codingacademybootcamp.slack.com),
+                From your conversation with Avi Isakov - Coding Academy and Shaked Barsheshet`  ,
+                isRead: false,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `28 Dec`,
+                from: 'Slack @slack.com',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `DUBI@gmail.com`,
+                subject: '[Slack] New messages from Avi Isakov - Coding Academy and Shaked Barsheshet in Coding Academy - NOV 22',
+                body: `You have a new mention in Coding Academy - NOV 22 (codingacademybootcamp.slack.com),
+                From your conversation with Avi Isakov - Coding Academy and Shaked Barsheshet`  ,
+                isRead: false,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `22 Dec`,
+                from: 'Slack @slack.com',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `R3ACHEL@gmail.com`,
+                subject: 'החשבון שלך בתשלומי החנייה',
+                body: 'big test',
+                isRead: true,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `15 Dec`,
+                from: 'Pango @pango.com',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `DAVID@gmail.com`,
+                subject: 'הזמנתך מוכנה לאיסוף בסניף נוף הגליל (נצרת עילית)',
+                body: `לקוח יקר, הזמנתך מס' 16321516 מוכנה לאיסוף בסניף נוף הגליל (נצרת עילית) בכתובת דרך החטיבות 15 (פתח ב-Waze | פתח ב-Google Maps).
 
-            _createMail(),
-            _createMail(),
-            _createMail(),
-            _createMail(),
-            _createMail(),
-            _createMail(),
-            _createMail()
+                לתשומת לבך - לצורך האיסוף יש להציג ת.ז ישראלית או רישיון נהיגה של בעל כרטיס האשראי. כמו כן תעודת הזיהוי של אוסף ההזמנה תצולם במעמד האיסוף.
+                
+                מומלץ מאוד להזמין תור לאיסוף הזמנתך בקישור הבא: https://ksp.co.il/q/page/tor_app_schedule.php?token=6bfd2f498d919769909a0bd02e518f6d הזמנת תור איננה חובה, אך מומלצת מאוד ועשויה לקצר זמני המתנה משמעותיים
+                
+                מספר החשבונית המשויכת להזמנתך: 219990 (אנא הצג מספר זה בסניף לצורך איתור ההזמנה).
+                
+                שעות הפעילות הינן: ימי א'-ה': 10:00-19:00
+                ימי ו': 09:30-14:00
+                קומה שנייה (בפועל זו קומה מספר 1), מול המשביר לצרכן
+                
+                דרכי יצירת קשר
+                פנייה לשירות לקוחות
+                פקס: 04-8500-850`,
+                isRead: false,
+                isChecked: false,
+                isStared: true,
+                isDeleted: false,
+                sentAt: `11 Dec`,
+                from: 'KSP.co.il @ksp.co.il',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `RUTI@gmail.com`,
+                subject: 'הזמנתך מוכנה לאיסוף בסניף קריון ק.ביאליק',
+                body: `לקוח יקר, הזמנתך מס' 16060923 מוכנה לאיסוף בסניף קריון ק.ביאליק בכתובת דרך עכו 192 קרית ביאליק (פתח ב-Waze | פתח ב-Google Maps).
+
+                לתשומת לבך - לצורך האיסוף יש להציג ת.ז ישראלית או רישיון נהיגה של בעל כרטיס האשראי. כמו כן תעודת הזיהוי של אוסף ההזמנה תצולם במעמד האיסוף.
+                
+                מומלץ מאוד להזמין תור לאיסוף הזמנתך בקישור הבא: https://ksp.co.il/q/page/tor_app_schedule.php?token=04f373a4c702a854b25b98e861f2ce3f הזמנת תור איננה חובה, אך מומלצת מאוד ועשויה לקצר זמני המתנה משמעותיים
+                
+                מספר החשבונית המשויכת להזמנתך: 398329 (אנא הצג מספר זה בסניף לצורך איתור ההזמנה).
+                
+                שעות הפעילות הינן: ימי א'-ה': 10:00-19:00
+                ימי ו': 09:00-14:00
+                קריון שער 3
+                
+                דרכי יצירת קשר
+                פנייה לשירות לקוחות
+                פקס: 04-8500-850`,
+                isRead: true,
+                isChecked: false,
+                isStared: true,
+                isDeleted: false,
+                sentAt: `11 Dec`,
+                from: 'KSP.co.il @ksp.co.il',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `RUTI@gmail.com`,
+                subject: 'test',
+                body: 'big test',
+                isRead: false,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `3 Dec`,
+                from: 'user @appsus.com',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `RUTI@gmail.com`,
+                subject: 'Planning a big trip in 2023? Start here.',
+                body: `Make that big trip happen. To kick-start your planning, we’ve got the best places to go right now.
+                 From laid-back beaches to buzzing cities, there’s something for everyone. Plus, tips for where to stay, things to do, and more.`,
+                isRead: false,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `28 Nov`,
+                from: 'Tripadvisor @mp1.tripadvisor.com',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `RUTI@gmail.com`,
+                subject: 'Tommy and 40 others made changes in your shared folders',
+                body: 'big test',
+                isRead: true,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `16 Nov`,
+                from: 'Slack @slack.com>',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `RUTI@gmail.com`,
+                subject: '[Slack] New messages from Inbal Avidov and Tommy Irmia - Coding Academy in Coding Academy - NOV 22',
+                body: 'big test',
+                isRead: true,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `29 Oct`,
+                from: 'Slack @slack.com>',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `RUTI@gmail.com`,
+                subject: 'מרגישים את הרומנטיקה באוויר? (פרסומת)',
+                body: 'big test',
+                isRead: false,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `22 Oct`,
+                from: 'StraussIL @mailing.unilever.co.il>',
+                fullname: 'Mahatma Appsus',
+            },
+
         ]
     }
     utilService.saveToStorage(MAIL_KEY, mails)
@@ -133,7 +314,7 @@ function addNewMail(recipients, subject, body) {
         isStared: false,
         isDeleted: false,
         sentAt: Date.now(),
-        email: 'user@appsus.com',
+        from: 'user@appsus.com',
         fullname: 'Mahatma Appsus',
     }
     return storageService.post(MAIL_KEY, newMail)
