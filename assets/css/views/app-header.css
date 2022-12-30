@@ -1,6 +1,6 @@
 .app-header{
     height: 80px;
-    background-color: var(--white);
+    background-color: whitesmoke;
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -28,16 +28,16 @@
     padding: 0 0;
 }
 .a-1, .u{
-    color: var(--blue);
+    color: #4285F4;
 }
 .p-1, .s-2{
-    color: var(--green);
+    color: #0F9D58;
 }
 .p-2{
-    color: var(--red);
+    color: #DB4437;
 }
 .s-1{
-    color: var(--yellow);
+    color: #F4B400;
 }
 
 .navbar-wrapper {

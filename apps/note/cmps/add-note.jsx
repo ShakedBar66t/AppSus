@@ -1,5 +1,6 @@
 import { utilService } from "../../../services/util.service.js"
 import { noteService } from "../services/note.service.js"
+import { uploadService } from "../../../services/upload.service.js"
 // import { NoteIndex } from "../views/note-index.jsx"
 
 const { useState, useRef } = React
@@ -10,11 +11,11 @@ export function AddNote({ updateNotes }) {
     const titleRef = useRef(null)
     const txtRef = useRef(null)
     const colorRef = useRef(null)
+    const urlRef = useRef(null)
 
     const [isExpanded, setExpanded] = useState(false)
     const [note, setNote] = useState({
         type: '',
-        file: '',
         backgroundColor: '',
         info: {
             txt: '',
@@ -36,14 +37,24 @@ export function AddNote({ updateNotes }) {
 
     function handleChange(e) {
         console.log(e)
-        const { name: field, value } = e.target
-        console.log('value', value)
+        const { name: field, value} = e.target
+        console.log('value', e.target.files)
         setNote((preValue) => {
             if (field === 'backgroundColor') {
                 note[field] = value
             } else {
                 note.info[field] = value
             }
+
+            if(field === 'url') {
+                console.log(urlRef.current.value)
+                uploadService.readURL(e.target.files).then((uploadedFile) =>
+                useState((prevState) => ({
+                    note: {...prevState.note, url: uploadedFile}
+                }))
+                )
+            }
+
             return {
                 ...preValue
             }
@@ -65,8 +76,7 @@ export function AddNote({ updateNotes }) {
                         type="text"
                         placeholder="Title"
                         name="title"
-                        onChange={handleChange}
-                        ref={titleRef} />
+                        onChange={handleChange} />
                 )}
 
                 <p>
@@ -78,7 +88,6 @@ export function AddNote({ updateNotes }) {
                         placeholder="Take a note.."
                         onChange={handleChange}
                         rows={isExpanded ? 3 : 1}
-                        ref={txtRef}
                     ></textarea>
                 </p>
                 <input
@@ -89,7 +98,16 @@ export function AddNote({ updateNotes }) {
                     onClick={handleExpanded}
                     rows={isExpanded ? 3 : 1}
                     ref={colorRef} />
-                <button type="submit">
+                <input
+                    className="url-input"
+                    type="file"
+                    name="url"
+                    onChange={handleChange}
+                    onClick={handleExpanded}
+                    rows={isExpanded ? 3 : 1}
+                    ref={urlRef}
+                />
+                <button type="submit" className="close-btn">
                     Close
                 </button>
             </form>

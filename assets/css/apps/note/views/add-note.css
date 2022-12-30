@@ -30,3 +30,12 @@ form textarea {
 .hidden {
     display: none
 }
+
+.close-btn{
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    border: 0;
+    margin-left: 86%;
+    background-color: #fff;
+}

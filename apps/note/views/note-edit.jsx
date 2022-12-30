@@ -32,7 +32,7 @@ export function NoteEdit({ updateNotes }) {
     return (
         <section className="note-edit">
             <h2>Edit Note</h2>
-            <form className="note-form" onSubmit={onSaveNote()}>
+            {/* <form className="note-form" onSubmit={onSaveNote()}>
                 <input 
                     className="title-input note-input"
                     type="text"
@@ -61,7 +61,7 @@ export function NoteEdit({ updateNotes }) {
                     onChange={handleChange}
                 />
                 <button className="save-btn" type="submit">Save</button>
-            </form>
+            </form> */}
         </section>
     )
 }
