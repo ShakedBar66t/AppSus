@@ -89,7 +89,7 @@ function _createMails() {
         mails = [
             {
                 id: utilService.makeId(),
-                to: 'HAIM@gmail.com',
+                to: 'user@appsus.com',
                 subject: 'test',
                 body: 'big test',
                 isRead: false,
@@ -102,7 +102,7 @@ function _createMails() {
             },
             {
                 id: utilService.makeId(),
-                to: `MOSHE @gmail.com`,
+                to: `haim@appsus.com`,
                 subject: 'Itai, נשארו רק עוד יומיים לקבל בחזרה עד 400 ₪! ⌛',
                 body: 'big test',
                 isRead: false,
@@ -110,12 +110,12 @@ function _createMails() {
                 isStared: false,
                 isDeleted: false,
                 sentAt: `28 Dec`,
-                from: `Booking.com @booking.com`,
+                from: 'user@appsus.com',
                 fullname: 'Mahatma Appsus',
             },
             {
                 id: utilService.makeId(),
-                to: `SIMCHA@gmail.com`,
+                to: `1usver@appsus.com`,
                 subject: '[Slack] New messages from Avi Isakov - Coding Academy and Shaked Barsheshet in Coding Academy - NOV 22',
                 body: `You have a new mention in Coding Academy - NOV 22 (codingacademybootcamp.slack.com),
                 From your conversation with Avi Isakov - Coding Academy and Shaked Barsheshet`  ,
@@ -129,7 +129,7 @@ function _createMails() {
             },
             {
                 id: utilService.makeId(),
-                to: `DUBI@gmail.com`,
+                to: `user@appsus.com`,
                 subject: '[Slack] New messages from Avi Isakov - Coding Academy and Shaked Barsheshet in Coding Academy - NOV 22',
                 body: `You have a new mention in Coding Academy - NOV 22 (codingacademybootcamp.slack.com),
                 From your conversation with Avi Isakov - Coding Academy and Shaked Barsheshet`  ,
@@ -143,7 +143,7 @@ function _createMails() {
             },
             {
                 id: utilService.makeId(),
-                to: `R3ACHEL@gmail.com`,
+                to: `user@appsus.com`,
                 subject: 'החשבון שלך בתשלומי החנייה',
                 body: 'big test',
                 isRead: true,
@@ -156,20 +156,20 @@ function _createMails() {
             },
             {
                 id: utilService.makeId(),
-                to: `DAVID@gmail.com`,
+                to: `user@appsus.com`,
                 subject: 'הזמנתך מוכנה לאיסוף בסניף נוף הגליל (נצרת עילית)',
                 body: `לקוח יקר, הזמנתך מס' 16321516 מוכנה לאיסוף בסניף נוף הגליל (נצרת עילית) בכתובת דרך החטיבות 15 (פתח ב-Waze | פתח ב-Google Maps).
 
                 לתשומת לבך - לצורך האיסוף יש להציג ת.ז ישראלית או רישיון נהיגה של בעל כרטיס האשראי. כמו כן תעודת הזיהוי של אוסף ההזמנה תצולם במעמד האיסוף.
-                
+
                 מומלץ מאוד להזמין תור לאיסוף הזמנתך בקישור הבא: https://ksp.co.il/q/page/tor_app_schedule.php?token=6bfd2f498d919769909a0bd02e518f6d הזמנת תור איננה חובה, אך מומלצת מאוד ועשויה לקצר זמני המתנה משמעותיים
-                
+
                 מספר החשבונית המשויכת להזמנתך: 219990 (אנא הצג מספר זה בסניף לצורך איתור ההזמנה).
-                
+
                 שעות הפעילות הינן: ימי א'-ה': 10:00-19:00
                 ימי ו': 09:30-14:00
                 קומה שנייה (בפועל זו קומה מספר 1), מול המשביר לצרכן
-                
+
                 דרכי יצירת קשר
                 פנייה לשירות לקוחות
                 פקס: 04-8500-850`,
@@ -183,20 +183,20 @@ function _createMails() {
             },
             {
                 id: utilService.makeId(),
-                to: `RUTI@gmail.com`,
+                to: `user@appsus.com`,
                 subject: 'הזמנתך מוכנה לאיסוף בסניף קריון ק.ביאליק',
                 body: `לקוח יקר, הזמנתך מס' 16060923 מוכנה לאיסוף בסניף קריון ק.ביאליק בכתובת דרך עכו 192 קרית ביאליק (פתח ב-Waze | פתח ב-Google Maps).
 
                 לתשומת לבך - לצורך האיסוף יש להציג ת.ז ישראלית או רישיון נהיגה של בעל כרטיס האשראי. כמו כן תעודת הזיהוי של אוסף ההזמנה תצולם במעמד האיסוף.
-                
+
                 מומלץ מאוד להזמין תור לאיסוף הזמנתך בקישור הבא: https://ksp.co.il/q/page/tor_app_schedule.php?token=04f373a4c702a854b25b98e861f2ce3f הזמנת תור איננה חובה, אך מומלצת מאוד ועשויה לקצר זמני המתנה משמעותיים
-                
+
                 מספר החשבונית המשויכת להזמנתך: 398329 (אנא הצג מספר זה בסניף לצורך איתור ההזמנה).
-                
+
                 שעות הפעילות הינן: ימי א'-ה': 10:00-19:00
                 ימי ו': 09:00-14:00
                 קריון שער 3
-                
+
                 דרכי יצירת קשר
                 פנייה לשירות לקוחות
                 פקס: 04-8500-850`,
@@ -210,7 +210,7 @@ function _createMails() {
             },
             {
                 id: utilService.makeId(),
-                to: `RUTI@gmail.com`,
+                to: `user@appsus.com`,
                 subject: 'test',
                 body: 'big test',
                 isRead: false,
@@ -218,12 +218,12 @@ function _createMails() {
                 isStared: false,
                 isDeleted: false,
                 sentAt: `3 Dec`,
-                from: 'user @appsus.com',
+                from: 'user@appsus.com',
                 fullname: 'Mahatma Appsus',
             },
             {
                 id: utilService.makeId(),
-                to: `RUTI@gmail.com`,
+                to: `user@appsus.com`,
                 subject: 'Planning a big trip in 2023? Start here.',
                 body: `Make that big trip happen. To kick-start your planning, we’ve got the best places to go right now.
                  From laid-back beaches to buzzing cities, there’s something for everyone. Plus, tips for where to stay, things to do, and more.`,
@@ -237,7 +237,7 @@ function _createMails() {
             },
             {
                 id: utilService.makeId(),
-                to: `RUTI@gmail.com`,
+                to: `user@appsus.com`,
                 subject: 'Tommy and 40 others made changes in your shared folders',
                 body: 'big test',
                 isRead: true,
@@ -250,7 +250,7 @@ function _createMails() {
             },
             {
                 id: utilService.makeId(),
-                to: `RUTI@gmail.com`,
+                to: `user@appsus.com`,
                 subject: '[Slack] New messages from Inbal Avidov and Tommy Irmia - Coding Academy in Coding Academy - NOV 22',
                 body: 'big test',
                 isRead: true,
@@ -263,7 +263,7 @@ function _createMails() {
             },
             {
                 id: utilService.makeId(),
-                to: `RUTI@gmail.com`,
+                to: `user@appsus.com`,
                 subject: 'מרגישים את הרומנטיקה באוויר? (פרסומת)',
                 body: 'big test',
                 isRead: false,

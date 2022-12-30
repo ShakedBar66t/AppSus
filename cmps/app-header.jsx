@@ -17,7 +17,7 @@ export function AppHeader() {
                     <span className='s-2'>s</span>
                 </h1>
             </div>        </Link>
-        {/* <MailFilter /> */}
+        <MailFilter />
         <nav>
             <NavLink to="/">Home</NavLink>
             <NavLink to="/about">About</NavLink>

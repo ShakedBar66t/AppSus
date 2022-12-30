@@ -47,9 +47,7 @@
 background-color: #c2e7ff;
 }
 
-.compose :hover {
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 3px 0px rgba(60, 64, 67, 0.3) 0px 4px 8px 3px;
-}
+
 
 */
 /* //////////////// */
@@ -83,6 +81,10 @@ background-color: #c2e7ff;
     box-shadow: rgba(0, 0, 0, 0) 0px 1px 2px 0px, rgba(0, 0, 0, 0) 0px 1px 3px 1px;
 }
 
+.compose:hover {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 4px 0px;
+}
+
 .icon {
     padding-right: 15px;
 }
@@ -98,15 +100,22 @@ background-color: #c2e7ff;
     color: #001d35;
 }
 
+.active {
+    background-color: #d3e3fd;
+}
+
 .side-bar-option span {
     vertical-align: baseline;
     margin-left: 10px;
     font-size: 14px;
-    font-weight: 400;
 }
 
-.side-bar-option:hover,
-.side-bar-option:hover h3 {
+.active span {
+    font-weight: bold;
+}
+
+
+.side-bar-option:hover {
     background-color: #20212409;
     font-weight: 600;
 }

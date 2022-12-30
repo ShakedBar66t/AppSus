@@ -33,7 +33,7 @@ export function MailFilter() {
     }
 
 
-    return <section className="mail-filter full main-layout">
+    return <section className="mail-filter ">
         <form className="mail-filter-form">
             <button className="search-btn fa fa-search"></button>
             <input className="search-input"

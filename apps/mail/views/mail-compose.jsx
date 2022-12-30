@@ -20,8 +20,8 @@ export function MailCompose({ setIsOpen }) {
     }
 
     return (
-        <div className="MailCompose">
-            <div className="MailCompose-content">
+        <div className="mail-compose">
+            <div className="mail-compose-content">
                 <form onSubmit={onSubmitMail}>
                     <button onClick={() => setIsOpen(false)}>X</button>
                     <label htmlFor="to"> To: </label>

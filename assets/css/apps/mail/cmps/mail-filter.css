@@ -8,6 +8,12 @@
 }
 
 form.mail-filter-form {
+    position: relative;
+    width: 50vw;
+    padding: 7px;
+    border-radius: 7px;
+    /* box-shadow: 0 1px 7px rgb(128, 128, 128); */
+    margin-right: 10vw;
     background-color: #eaf1fb;
     display: flex;
     margin-bottom: none;
@@ -18,7 +24,7 @@ form.mail-filter-form {
     align-items: center;
     background-color: #eaf1fb;
     justify-content: center;
-
+    margin-bottom: 0px;
     padding: 10px 0;
     background-color: #eaf1fb;
 
