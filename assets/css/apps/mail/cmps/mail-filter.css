@@ -1,0 +1,25 @@
+.search-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #444746;
+    width: 40px;
+    height: 40px;
+}
+
+form.mail-filter-form {
+    background-color: #eaf1fb;
+    display: flex;
+    margin-bottom: none;
+}
+
+.search-input {
+    display: flex;
+    align-items: center;
+    background-color: #eaf1fb;
+    justify-content: center;
+
+    padding: 10px 0;
+    background-color: #eaf1fb;
+
+}

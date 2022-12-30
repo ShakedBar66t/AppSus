@@ -1,4 +1,7 @@
+import { MailFilter } from "../apps/mail/cmps/mail-filter.jsx"
+
 const { Link, NavLink } = ReactRouterDOM
+
 
 export function AppHeader() {
 
@@ -14,6 +17,7 @@ export function AppHeader() {
                     <span className='s-2'>s</span>
                 </h1>
             </div>        </Link>
+        {/* <MailFilter /> */}
         <nav>
             <NavLink to="/">Home</NavLink>
             <NavLink to="/about">About</NavLink>
