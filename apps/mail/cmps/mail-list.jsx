@@ -9,11 +9,11 @@ export function MailList({ mails }) {
         <thead>
 
             <tr>
-                <th></th>
+                {/* <th></th>
                 <th>from </th>
                 <th>mail</th>
                 <th>time</th>
-                <th>time</th>
+                <th>time</th> */}
             </tr>
         </thead>
 

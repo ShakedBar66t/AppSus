@@ -26,8 +26,10 @@ export function MailIndex() {
     return <div className="mail-index main-layout">
         <div className="cmps-container">
 
-            <MailNav />
-            <MailList mails={mails} />
+            <div className="nav-container">  <MailNav /></div>
+            <div className="mail-list-container">
+                <MailList mails={mails} />
+            </div>
         </div>
     </div>
 }

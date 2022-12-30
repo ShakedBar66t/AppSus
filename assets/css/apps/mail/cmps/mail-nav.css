@@ -1,16 +1,28 @@
+/* .mail-nav-container {
+    height: 92vh;
+}
+
 .mail-nav {
-    /* position: fixed; */
+    left: 0%;
+    position: fixed;
     background-color: #f6f8fc;
     border: 1px black solid;
     display: flex;
     flex-direction: column;
+    width: 29.2%;
     justify-content: space-around;
-    height: 92vh;
 }
 
 .menu-item {
-    background-color: aliceblue;
+    border-radius: 15px;
+    flex: 1;
+    text-align: center;
+    color: #202124;
+    background-color: #d3e3fd;
     flex: grow;
+    font-size: 14px;
+    text-align: left;
+    padding: px;
 }
 
 .menu-item.active {
@@ -18,5 +30,87 @@
 }
 
 .menu-item:hover {
-    background-color: #dddddd;
+    background-color: #20212409;
+}
+ */
+
+/* .compose {
+    border: none;
+    border-radius: 16px;
+    height: 56px;
+    padding: 1rem;
+    margin: 0.5rem;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0) 0px 1px 2px 0px, rgba(0, 0, 0, 0) 0px 1px 3px 1px;
+    margin-bottom: 1rem;
+    color: #001d35;
+background-color: #c2e7ff;
+}
+
+.compose :hover {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 3px 0px rgba(60, 64, 67, 0.3) 0px 4px 8px 3px;
+}
+
+*/
+/* //////////////// */
+
+
+.nav-container {
+    background-color: #f6f8fc;
+}
+
+
+.sidbar {
+    flex: 0.3;
+    max-width: 300px;
+    padding-right: 20px;
+}
+
+.compose {
+    border: none;
+    border-radius: 16px;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    padding: 15px;
+    text-transform: capitalize;
+    color: #001d35;
+    background-color: #c2e7ff;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0) 0px 1px 2px 0px, rgba(0, 0, 0, 0) 0px 1px 3px 1px;
+}
+
+.icon {
+    padding-right: 15px;
+}
+
+.side-bar-option {
+    align-items: center;
+    display: flex;
+    height: 40px;
+    padding: 0 10px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+    color: #001d35;
+}
+
+.side-bar-option span {
+    vertical-align: baseline;
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.side-bar-option:hover,
+.side-bar-option:hover h3 {
+    background-color: #20212409;
+    font-weight: 600;
+}
+
+.option-star.fa.fa-star-o {
+    color: #001d35;
 }

@@ -49,16 +49,6 @@ td:nth-last-child(2) {
     display: none;
 }
 
-/* 
-.mail-preview td {
-    min-width: 6;
-} */
-
-/* .mail-preview.read td {
-    background-color: #f2f6fc;
-    font-weight: lighter;
-} */
-
 .mail-preview.read {
     background-color: #f2f6fc;
 }
@@ -75,7 +65,7 @@ tr.read td.date {
 }
 
 table {
-    width: 80%;
+    width: 100%;
     cursor: pointer;
 }
 
