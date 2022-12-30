@@ -16,20 +16,20 @@ export function MailPreview({ mail }) {
         return param
     }
 
-    // console.log('from', mail.from=== mail.from === 'user@appsus.com')
-    if (!status && mail.from === 'user@appsus.com') return /////inbox
-    if (!status && mail.isDeleted || status === 'starred' && mail.isDeleted || status === 'sent' && mail.isDeleted) return ////// deleting the mail
-    if (status === 'sent' && !mail.to === 'user@appsus.com') return
-    if (status === 'bin' && !mail.isDeleted) return
-    if (status === 'starred' && !mail.isStared) return
+    if (!status && mail.from === 'user@appsus.com') return /////inbox 
+    else if (status === 'sent' && mail.from !== 'user@appsus.com') return ///////sent
+    else if (status === 'bin' && !mail.isDeleted) return //////bin
+    else if (status === 'starred' && !mail.isStared) return //////stared
+    else if (!status && mail.isDeleted || status === 'starred' && mail.isDeleted || status === 'sent' && mail.isDeleted) return ////// deleting the mail
 
     function changeIsRead() {
         if (!mail.isRead) {
             mail.className = "isRead"
-            mail.isRead = !mail.isRead
-            mailService.save(mail)
+            mail.isRead = true
+            mailService.update(mail)
             setChange(!change)
         }
+        navigate(`/details/${mail.id}`)
     }
 
     function generalChange(mail, keyToChange) {
@@ -66,11 +66,11 @@ export function MailPreview({ mail }) {
     return <tr className={createClassName(mail)} >
         <td onClick={() => generalChange(mail, 'isChecked')} className={(mail.isChecked) ? "fa fa-check-square-o" : "fa fa-square-o"} ></td>
         <td onClick={() => generalChange(mail, 'isStared')} className={(mail.isStared) ? "star fa fa-star " : "star fa fa-star-o star-box"}></td>
-        <td className="sender" onClick={() => { changeIsRead(), navigate(`/details/${mail.id}`) }}>
+        <td className="sender" onClick={() => { changeIsRead() }}>
             {getMailSender(mail.from)}</td>
-        <td className="subject" onClick={() => { changeIsRead(), navigate(`/details/${mail.id}`) }}>
+        <td className="subject" onClick={() => { changeIsRead() }}>
             {mail.subject} </td>
-        <td className="date" onClick={() => { changeIsRead(), navigate(`/details/${mail.id}`) }}>
+        <td className="date" onClick={() => { changeIsRead() }}>
             {mail.sentAt}</td>
         <td onClick={() => generalChange(mail, 'isRead')} className={(mail.isRead) ? "envelope fa fa-envelope-o" : "envelope fa fa-envelope-open-o"}></td>
         <td onClick={() => generalChange(mail, 'isDeleted')} className="trash fa fa-trash"></td>

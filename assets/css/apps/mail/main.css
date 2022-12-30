@@ -7,10 +7,12 @@
 @import "./cmps/mail-preview.css";
 @import "./cmps/mail-list.css";
 @import "./cmps/mail-nav.css";
+@import "./cmps/mail-filter.css";
 
 /* views */
 @import './views/mail-index.css';
 @import './views/mail-details.css';
+@import './views/mail-compose.css';
 
 
 

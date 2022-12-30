@@ -22,6 +22,13 @@ export function showUserMsg(msg) {
     eventBusService.emit('show-user-msg', msg)
 }
 
+export function showDeletedMsg() {
+    eventBusService.emit('Conversation moved to Bin.')
+}
+export function showStaredMsg() {
+    eventBusService.emit('Conversation starred.')
+}
+
 export function showSuccessMsg(txt) {
     showUserMsg({ txt, type: 'success' })
 }
