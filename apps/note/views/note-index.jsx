@@ -11,6 +11,7 @@ export function NoteIndex() {
 
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
     const [notes, setNotes] = useState([])
+    const [change, setChange] = useState(true)
     const [updateFromAdd, setupdateFromAdd] = useState([false])
 
     useEffect(() => {
@@ -26,6 +27,7 @@ export function NoteIndex() {
     function loadNotes() {
         noteService.query().then(notesToUpdate => {
             setNotes(notesToUpdate)
+            setChange(!change)
         })
     }
 
@@ -41,13 +43,22 @@ export function NoteIndex() {
         })
     }
 
+    function onCopyNote(noteId) {
+        debugger
+        setChange(!change)
+        noteService.copyNote(noteId).then(() => {
+            console.log('copied')
+        })
+    }
+
 
     return <section className="note-index">
         <AddNote updateNotes={updateNotes} />
         {/* <NoteFilter onSetFilter={onSetFilter} /> */}
         <NoteList
             notes={notes}
-            onRemoveNote={onRemoveNote} />
+            onRemoveNote={onRemoveNote}
+            onCopyNote={onCopyNote} />
     </section>
 
 

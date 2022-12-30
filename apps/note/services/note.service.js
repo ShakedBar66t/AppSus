@@ -11,6 +11,7 @@ export const noteService = {
     getDefaultFilter,
     remove,
     saveNote,
+    copyNote
 }
 
 
@@ -23,6 +24,16 @@ function _update(noteToUpdate) {
     )
     _saveToStorage(notes)
     return Promise.resolve()
+}
+
+function copyNote(noteId){
+    let notes = _loadFromStorage()
+    const note = notes.find((note) => note.id === noteId)
+    const newNote = Object.assign({}, note)
+    newNote.id = utilService.makeId()
+    notes.unshift(newNote)
+    _saveToStorage(notes)
+    return Promise.resolve(notes)
 }
 
 function _add(noteToAdd) {
@@ -79,7 +90,7 @@ function _createNotes() {
                 type: "note-img",
                 backgroundColor: utilService.getRandomColor(),
                 info: {
-                    url: "http://some-img/me",
+                    url: "https://www.w3schools.com/images/w3schools_green.jpg",
                     title: "Bobi and Me"
                 },
                 style: {

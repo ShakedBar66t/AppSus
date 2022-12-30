@@ -37,7 +37,7 @@ export function AddNote({ updateNotes }) {
 
     function handleChange(e) {
         console.log(e)
-        const { name: field, value} = e.target
+        const { name: field, value } = e.target
         console.log('value', e.target.files)
         setNote((preValue) => {
             if (field === 'backgroundColor') {
@@ -46,21 +46,15 @@ export function AddNote({ updateNotes }) {
                 note.info[field] = value
             }
 
-            if(field === 'url') {
-                console.log(urlRef.current.value)
-                uploadService.readURL(e.target.files).then((uploadedFile) =>
-                useState((prevState) => ({
-                    note: {...prevState.note, url: uploadedFile}
-                }))
+            if (field === 'url'){
+                uploadService.readURL(e.target.files).then((uploadedFile)=>
+                note.info[field] = uploadedFile
                 )
             }
-
             return {
                 ...preValue
             }
-
-        }
-        )
+        })
     }
 
     function handleExpanded() {

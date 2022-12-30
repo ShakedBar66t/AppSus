@@ -8,10 +8,11 @@ function readURL(inputFiles) {
         console.log(reader)
         reader.onload = () => {
             const uploadedFile = reader.result
+            console.log(uploadedFile)
             resolve(Promise.resolve(uploadedFile))
         }
-        console.log(inputFiles[0])
         reader.readAsDataURL(inputFiles[0])
     })
+    console.log('prm', prm)
     return prm
 }
