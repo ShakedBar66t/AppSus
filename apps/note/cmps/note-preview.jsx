@@ -1,13 +1,23 @@
-
+const { useState, Fragment } = React
 
 export function NotePreview({ note, onRemoveNote }) {
-
+    const [fileURL, setFileURL] = useState('');
     const todos = note.info.todos
     // if(!note.info.todos) return <h1>Loading..</h1>
     if (note.info.todos) { var finalList = createTodos(todos) }
     // createTodos(todos)
 
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
 
+        // Read the contents of the file and set the file URL in state
+        uploadService.readURL(file).then((fileURL) => {
+            setFileURL(fileURL);
+        })
+
+    }
+
+    { console.log(note.id, note.info.url) }
 
     function createTodos(todos) {
         console.log('note.id', note.id)
@@ -21,20 +31,24 @@ export function NotePreview({ note, onRemoveNote }) {
 
     const { id, type, url, backgroundColor, title } = note
 
-    
-    
-    
+
+
     return <article className="note-preview gallery-item" style={{ backgroundColor: note.backgroundColor }}>
         {url && (
             <div className="url-container">
-                {url.includes('image') && <img src={note.info.url} alt="error" />}
+                {url.includes('image') && (
+                    <Fragment>
 
+                        <input type="file" onChange={handleFileChange} />
+                        <img src={fileURL} alt="error" />
+                    </Fragment>
+
+                )}
             </div>
         )}
         <h2>{note.info.title}</h2>
         <h1>{note.info.txt}</h1>
         <h2>{note.info.label}</h2>
-        <img src={note.info.url} />
         {finalList}
         <div className="note-btn">
             <div className="btn-flex">
@@ -53,4 +67,5 @@ export function NotePreview({ note, onRemoveNote }) {
             </div>
         </div>
     </article>
+        ;
 }

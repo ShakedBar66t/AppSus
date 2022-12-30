@@ -16,6 +16,7 @@ export const mailService = {
     remove,
     save,
     getEmptyMail,
+    getUnreadCount,
     getDefaultFilter,
     getNextMailId,
     getPrevMailId,
@@ -24,17 +25,43 @@ export const mailService = {
 }
 
 function query(filterBy = getDefaultFilter()) {
-    return storageService.query(MAIL_KEY)
+    return storageService
+        .query(MAIL_KEY)
         .then(mails => {
-            if (filterBy === 'starred') {
-                mails = mails.filter(mail => mail.stared === true)
-            }
-            // if (filterBy==='') {
-            //     mails = mails.filter(mail => mail.listPrice.amount <= filterBy.maxPrice)
+            // if (filterBy === 'starred') {
+            //     mails = mails.filter(mail => mail.stared === true);
             // }
-            return mails
-        })
+            if (filterBy.txt) {
+                mails = mails.filter(mail => mail.body.includes(filterBy.txt));
+            }
+            return mails;
+        });
 }
+
+function getUnreadCount() {
+    return mailService.query().then(mails => {
+        return mails.reduce((unreadCount, mail) => {
+            if (mail.isRead || mail.isDeleted || mail.from === 'user@appsus.com') {
+                return unreadCount;
+            } else {
+                return unreadCount + 1;
+            }
+        }, 0);
+    });
+}
+
+// function query(filterBy = getDefaultFilter()) {
+//     return storageService.query(MAIL_KEY)
+//         .then(mails => {
+//             if (filterBy === 'starred') {
+//                 mails = mails.filter(mail => mail.stared === true)
+//             }
+//             // if (filterBy==='') {
+//             //     mails = mails.filter(mail => mail.listPrice.amount <= filterBy.maxPrice)
+//             // }
+//             return mails
+//         })
+// }
 
 // const filterby = {
 //     status: 'inbox/sent/trash/draft',

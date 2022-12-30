@@ -22,29 +22,37 @@ export function MailCompose({ setIsOpen }) {
     return (
         <div className="mail-compose">
             <div className="mail-compose-content">
-                <form onSubmit={onSubmitMail}>
-                    <button onClick={() => setIsOpen(false)}>X</button>
-                    <label htmlFor="to"> To: </label>
-                    <input
-                        type="email"
-                        name="to"
-                        id="to"
-                        placeholder="Recipients"
-                        ref={elToRef} />
+                <div className="new-message">New Message <button className="close-compose  fa fa-times" onClick={() => setIsOpen(false)}></button></div>
+                <form className="compose-form" onSubmit={onSubmitMail}>
+                    <div className="input-container flex">
+                        <label htmlFor="to"> To: </label>
+                        <input
+                            className="to-input"
+                            type="email"
+                            name="to"
+                            id="to"
+                            placeholder="Recipients"
+                            ref={elToRef} />
+                    </div>
                     <hr />
-                    <label htmlFor="subject">Subject: </label>
-                    <input
-                        type="text"
-                        name="subject"
-                        id="subject"
-                        placeholder="Subject"
-                        ref={elSubjectRef} />
+                    <div className="input-container flex">
+                        <label htmlFor="subject">Subject: </label>
+                        <input
+                            type="text"
+                            name="subject"
+                            id="subject"
+                            placeholder="Subject"
+                            ref={elSubjectRef} />
+                    </div>
                     <hr />
-                    <textarea name="body"
+                    <textarea className="compose-text"
+                        name="body"
                         ref={elTextRef}
                     />
-                    <button type="submit">Send</button>
-                    <button onClick={() => { setIsOpen(false) }}>Cancel</button>
+                    <hr />
+                    <div className="btn-container flex">
+                        <button className="send-btn" type="submit">Send</button>
+                    </div>
                 </form>
             </div>
         </div>

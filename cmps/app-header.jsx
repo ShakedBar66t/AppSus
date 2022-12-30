@@ -1,9 +1,19 @@
+const { useLocation, Link, NavLink } = ReactRouterDOM
+const { createContext, useState } = React
+
 import { MailFilter } from "../apps/mail/cmps/mail-filter.jsx"
+import { mailService } from "../apps/mail/services/mail.service.js"
 
-const { Link, NavLink } = ReactRouterDOM
 
+export function AppHeader({ useFilter }) {
 
-export function AppHeader() {
+    const FilterContext = createContext();
+    const location = useLocation()
+    const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+
+    function onSetFilter(filterBy) {
+        useFilter(filterBy)
+    }
 
     return <header className="app-header">
         <Link to="/">
@@ -16,8 +26,12 @@ export function AppHeader() {
                     <span className='u'>u</span>
                     <span className='s-2'>s</span>
                 </h1>
-            </div>        </Link>
-        <MailFilter />
+            </div>
+        </Link>
+        <FilterContext.Provider value={filterBy}>
+            {location.pathname.startsWith('/mail') && <MailFilter onSetFilter={onSetFilter} />}
+        </FilterContext.Provider>
+
         <nav>
             <NavLink to="/">Home</NavLink>
             <NavLink to="/about">About</NavLink>

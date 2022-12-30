@@ -1,8 +1,8 @@
-const {Link, NavLink } = ReactRouterDOM
+const { Link, NavLink } = ReactRouterDOM
 
-export function AppHeader({setPage}) {
+export function AppHeader({ setPage }) {
 
-    return <header className="app-header full main-layout">
+    return <header className="app-header">
         <div className="header-container">
             <h1>React Book App</h1>
             <nav className="app-nav">

@@ -1,19 +1,16 @@
 const { useState, Fragment } = React
 const { NavLink, Link, useParams } = ReactRouterDOM
 
-import { MailCompose } from '../views/mail-compose.jsx';
-
-export function MailNav({ setIsOpen }) {
-    // const [isComposeOpen, setIsComposeOpen] = useState(false)
-
+export function MailNav({ setIsOpen, loadMails, unreadMailsCount }) {
     return <div className="sibe-bar">
 
         <button className="compose" onClick={() => { setIsOpen(true) }}>
             <span className="icon fa fa-pencil" aria-hidden="true" />Compose
         </button>
-        <NavLink to="/mail/inbox/" className="menu-item side-bar-option ">
+        <NavLink to="/mail/inbox/" className="menu-item side-bar-option " onClick={(() => loadMails({ txt: '' }))}>
             <i className="icon fa fa-envelope-open-o" aria-hidden="true"></i>
             <span >Inbox</span>
+            <span>{unreadMailsCount}</span>
         </NavLink>
 
         <NavLink to="/mail/inbox/starred" className="menu-item side-bar-option">
@@ -35,12 +32,6 @@ export function MailNav({ setIsOpen }) {
             <i className="icon fa fa-trash" aria-hidden="true" />
             <span> Bin</span>
         </NavLink>
-
-        {/* <div className="mail-compose-container">
-            {isComposeOpen && <MailCompose setIsOpen={setIsComposeOpen} />}
-        </div> */}
-
-
 
     </div >
 

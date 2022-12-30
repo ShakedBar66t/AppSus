@@ -1,4 +1,24 @@
+.select,
+.close {
+    margin-top: 6px;
+    position: relative;
+    color: #444746;
+    border-radius: 50%;
+    padding: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close {
+    font-size: 18px;
+}
+
 .search-btn {
+    border-radius: 50%;
     border: none;
     background: none;
     cursor: pointer;
@@ -8,11 +28,12 @@
 }
 
 form.mail-filter-form {
+    height: 50px;
+    z-index: 1;
     position: relative;
     width: 50vw;
     padding: 7px;
     border-radius: 7px;
-    /* box-shadow: 0 1px 7px rgb(128, 128, 128); */
     margin-right: 10vw;
     background-color: #eaf1fb;
     display: flex;
@@ -28,4 +49,47 @@ form.mail-filter-form {
     padding: 10px 0;
     background-color: #eaf1fb;
 
+}
+
+.dropdown {
+    position: relative;
+}
+
+.select:hover {
+    background-color: #20212436;
+}
+
+.menu {
+    list-style: none;
+    margin-top: 8px;
+    padding: 0.2em;
+    background-color: eaf1fb;
+    border-radius: 15px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    display: none;
+
+    z-index: 5;
+}
+
+.menu li {
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0.7em 0.5em;
+    margin: 0.3em 0;
+    border-radius: 0.5em;
+}
+
+.search-btn:hover,
+.menu li:hover,
+.close:hover {
+    transition: 0.4s;
+    background-color: #20212416;
+}
+
+.menu.active {
+    display: block;
+    opacity: 1;
 }

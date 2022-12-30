@@ -1,8 +1,70 @@
 .mail-compose {
-    right: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
-.mail-compose-container {
-    background-color: brown;
-    margin-top: 85px;
+.new-message {
+    padding: 7px;
+    font-family: Roboto Helvetica, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    background-color: #f2f6fc;
+}
+
+
+.compose-form {
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.close-compose {
+    cursor: pointer;
+    border: none;
+    background-color: inherit;
+    transition: .4s;
+}
+
+.close-compose:hover {
+    background-color: gray;
+    border-radius: 50%;
+}
+
+.input-container label {
+    font-family: Roboto Helvetica, sans-serif;
+    margin-left: 8px;
+    background-color: #ffffff;
+    align-self: center;
+}
+
+.input-container input {
+    margin: 0;
+    align-self: center;
+    background-color: #ffffff;
+}
+
+.compose-text {
+    height: 33vh;
+}
+
+.btn-container {
+    justify-content: flex-end;
+}
+
+.send-btn {
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 15px 15px 0px;
+    width: 85px;
+    color: #ffffff;
+    background-color: #0b57d0;
+    padding: 15px;
+    border-radius: 35px;
+    border: none;
+    font-weight: 600;
+}
+
+.compose-form hr {
+    margin-top: 4px;
+    margin-right: 8px;
+    margin-left: 8px;
+    margin-bottom: 8px;
 }

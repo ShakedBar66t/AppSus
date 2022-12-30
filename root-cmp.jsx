@@ -1,5 +1,7 @@
 const { Route, Routes } = ReactRouterDOM
 const Router = ReactRouterDOM.HashRouter
+const { useState, useEffect, useRef } = React
+
 
 import { BookIndex } from "./apps/books/pages/book-index.jsx"
 import { BookDetails } from "./apps/books/pages/book-details.jsx"
@@ -15,14 +17,22 @@ import { MailDetails } from "./apps/mail/views/mail-details.jsx"
 
 
 export function App() {
+
+    const [filterByFromFilter, setfilterByFromFilter] = useState()
+    function useFilter(filterBy) {
+        debugger
+        setfilterByFromFilter(filterBy)
+    }
+
+
     return <Router>
         <section className="app">
-            <AppHeader />
+            <AppHeader useFilter={useFilter} />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
 
-                <Route path="/mail/inbox/" element={<MailIndex />} >
+                <Route path="/mail/inbox/" element={<MailIndex filterByFromFilter={filterByFromFilter} />} >
                     <Route path="/mail/inbox/:starred" element={<MailIndex />} />
                     <Route path="/mail/inbox/:sent" element={<MailIndex />} />
                     <Route path="/mail/inbox/:drafts" element={<MailIndex />} />

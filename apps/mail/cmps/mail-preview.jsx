@@ -3,7 +3,8 @@ const { useParams, Link, useNavigate } = ReactRouterDOM
 
 import { mailService } from "../services/mail.service.js"
 
-export function MailPreview({ mail }) {
+export function MailPreview({ mail, mailRead }) {
+    // console.log(mailRead)
     const navigate = useNavigate()
 
     const [change, setChange] = useState(true)
@@ -28,11 +29,19 @@ export function MailPreview({ mail }) {
             mail.isRead = true
             mailService.update(mail)
             setChange(!change)
+            mailRead(mail.isRead)
         }
         navigate(`/details/${mail.id}`)
     }
 
     function generalChange(mail, keyToChange) {
+        if (keyToChange === 'isRead') {
+            debugger
+            mail[keyToChange] = !mail[keyToChange]
+            mailService.update(mail)
+            mailRead(!mail.isRead)
+            return
+        }
         if (keyToChange === 'isDeleted' && mail.isDeleted) {
             mailService.remove(mail.id)
         }
@@ -64,15 +73,15 @@ export function MailPreview({ mail }) {
     }
 
     return <tr className={createClassName(mail)} >
-        <td onClick={() => generalChange(mail, 'isChecked')} className={(mail.isChecked) ? "fa fa-check-square-o" : "fa fa-square-o"} ></td>
-        <td onClick={() => generalChange(mail, 'isStared')} className={(mail.isStared) ? "star fa fa-star " : "star fa fa-star-o star-box"}></td>
+        <td onClick={() => generalChange(mail, 'isChecked')} className={(mail.isChecked) ? " icon fa fa-check-square-o" : " icon fa fa-square-o"} ></td>
+        <td onClick={() => generalChange(mail, 'isStared')} className={(mail.isStared) ? "star  icon fa fa-star " : "star  icon fa fa-star-o star-box"}></td>
         <td className="sender" onClick={() => { changeIsRead() }}>
             {getMailSender(mail.from)}</td>
         <td className="subject" onClick={() => { changeIsRead() }}>
             {mail.subject} </td>
         <td className="date" onClick={() => { changeIsRead() }}>
             {mail.sentAt}</td>
-        <td onClick={() => generalChange(mail, 'isRead')} className={(mail.isRead) ? "envelope fa fa-envelope-o" : "envelope fa fa-envelope-open-o"}></td>
+        <td onClick={() => generalChange(mail, 'isRead')} className={(mail.isRead) ? "envelope  icon fa fa-envelope-o" : "envelope  icon fa fa-envelope-open-o"}></td>
         <td onClick={() => generalChange(mail, 'isDeleted')} className="trash fa fa-trash"></td>
     </tr >
 }

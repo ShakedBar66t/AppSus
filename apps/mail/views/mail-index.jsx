@@ -1,49 +1,53 @@
 const { useState, useEffect, useRef } = React
-const { Link, useParams } = ReactRouterDOM
 
-import { MailFilter } from "../cmps/mail-filter.jsx"
 import { MailList } from "../cmps/mail-list.jsx"
 import { MailNav } from "../cmps/mail-nav.jsx"
-import { mailService } from "../services/mail.service.js"
 import { MailCompose } from '../views/mail-compose.jsx';
+import { mailService } from "../services/mail.service.js"
 
 
-
-export function MailIndex() {
+export function MailIndex({ filterByFromFilter }) {
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
     const [mails, setMails] = useState([])
     const [isComposeOpen, setIsComposeOpen] = useState(false)
-
+    const [unreadMailsCount, setUnreadMailsCount] = useState()
 
     useEffect(() => {
-        // setIsLoading(true)
-        loadMails()
-    }, [filterBy])
+        setFilterBy(filterByFromFilter);
+        loadMails();
+        mailService.getUnreadCount().then(count => {
+            setUnreadMailsCount(count);
+        });
+    }, [filterBy, filterByFromFilter]);
 
-    function loadMails() {
-        // setFilterBy(currParams)
-        // setIsLoading(false)
-        mailService.query(filterBy).then(mailsToUpdate => {
+    function mailRead(isRead) {
+        if (isRead) setUnreadMailsCount(unreadMailsCount + 1)
+        else setUnreadMailsCount(unreadMailsCount - 1)
+
+    }
+
+    function loadMails(filter = filterBy) {
+        mailService.query(filter).then(mailsToUpdate => {
             setMails(mailsToUpdate)
         })
     }
 
 
-
-    return <div className="mail-index main-layout">
+    return <div className="mail-index ">
 
         <div className="filter-container">
             {/* <MailFilter /> */}
         </div>
         <div className="cmps-container">
-            <div className="nav-container">  <MailNav setIsOpen={setIsComposeOpen} /></div>
+            <div className="nav-container">  <MailNav setIsOpen={setIsComposeOpen} loadMails={loadMails} unreadMailsCount={unreadMailsCount} /></div>
             <div className="mail-list-container">
-                <MailList mails={mails} />
+                <MailList mails={mails} mailRead={mailRead} />
             </div>
-            <div className="mail-compose-container">
-                {isComposeOpen && <MailCompose setIsOpen={setIsComposeOpen} />}
+            <div className={(isComposeOpen) ? "mail-compose-container" : "mail-compose-container hidden"}>
+                {/* <div className="mail-compose-container"> */}
+                {isComposeOpen && <MailCompose useFilter={useFilter} setIsOpen={setIsComposeOpen} />}
             </div>
         </div>
-    </div>
+    </div >
 }
 

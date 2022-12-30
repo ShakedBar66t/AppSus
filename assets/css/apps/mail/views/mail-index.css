@@ -3,11 +3,30 @@
 }
 
 .cmps-container {
-    background-color: aqua;
     display: flex;
     flex-direction: row;
 }
 
 .nav-container {
-    height: 750px;
+    height: 90vh;
+    width: 25vw;
+}
+
+.mail-list-container {
+    z-index: 0;
+    right: 1%;
+}
+
+.mail-compose-container {
+    position: fixed;
+    bottom: 0;
+    right: 15vw;
+    z-index: 1;
+    height: 450px;
+    width: 450px;
+    background-color: inherit;
+}
+
+.hidden {
+    display: none;
 }

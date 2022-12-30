@@ -6,6 +6,15 @@
     list-style-type: none;
 }
 
+.icon {
+    border-radius: 50%;
+    padding: 6px;
+}
+
+.icon:hover {
+    background-color: gray;
+}
+
 /* fonts */
 
 @font-face {
