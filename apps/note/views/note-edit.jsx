@@ -33,15 +33,15 @@ export function NoteEdit({ updateNotes }) {
         <section className="note-edit">
             <h2>Edit Note</h2>
             <form className="note-form" onSubmit={onSaveNote()}>
-                <input
-                    className="title-input"
+                <input 
+                    className="title-input note-input"
                     type="text"
                     name="title"
                     onChange={handleChange}
                     placeholder="title"
                     value={title} />
                 <textarea
-                    className="txt-input"
+                    className="txt-input note-textarea"
                     type="text"
                     name="txt"
                     onChange={handleChange}
@@ -49,13 +49,13 @@ export function NoteEdit({ updateNotes }) {
                     value={txt}
                 />
                 <input
-                    className="color-input"
+                    className="color-input note-input"
                     type="color"
                     name="backgroundColor"
                     onChange={handleChange}
                 />
                 <input
-                    className="file-input"
+                    className="file-input note-input"
                     type="file"
                     name="file"
                     onChange={handleChange}
