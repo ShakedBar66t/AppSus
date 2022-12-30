@@ -47,21 +47,14 @@ export function AddNote({ updateNotes }) {
             }
 
             if (field === 'url') {
-                console.log(urlRef.current.value)
-                debugger
                 uploadService.readURL(e.target.files).then((uploadedFile) =>
-                    useState((prevState) => ({
-                        note: { ...prevState.note, url: uploadedFile }
-                    }))
+                    note.info[field] = uploadedFile
                 )
             }
-
             return {
                 ...preValue
             }
-
-        }
-        )
+        })
     }
 
     function handleExpanded() {
