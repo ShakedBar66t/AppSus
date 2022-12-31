@@ -34,7 +34,8 @@ export function NoteIndex() {
     function onSetFilter(filterBy) {
     }
 
-    function onRemoveNote(noteId) {
+    function onRemoveNote(e, noteId) {
+        e.preventDefault()
         console.log('Removing', noteId);
         noteService.remove(noteId).then(() => {
             console.log('Removed')
@@ -43,12 +44,22 @@ export function NoteIndex() {
         })
     }
 
-    function onCopyNote(noteId) {
-        debugger
-        setChange(!change)
+    function onCopyNote(e, noteId) {
+        e.preventDefault()
         noteService.copyNote(noteId).then(() => {
-            console.log('copied')
+            loadNotes()
         })
+    }
+
+    function onPinNote(e, noteId){
+        e.preventDefault()
+        noteService.pinNote(noteId).then(() => {
+            loadNotes()
+        })
+    }
+
+    function onSendAsEmail(){
+        
     }
 
 
@@ -58,7 +69,9 @@ export function NoteIndex() {
         <NoteList
             notes={notes}
             onRemoveNote={onRemoveNote}
-            onCopyNote={onCopyNote} />
+            onCopyNote={onCopyNote}
+            onPinNote={onPinNote}
+            onSendAsEmail={onSendAsEmail} />
     </section>
 
 

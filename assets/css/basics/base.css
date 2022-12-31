@@ -25,18 +25,17 @@ a {
     color: inherit;
 }
 
-.note-preview{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: max-content;
+.gallery-item {
     height: max-content;
+    border-radius: 1rem;
+    border: 0.15rem solid #e8e8e8f3;
 }
 
-.note-btn{
+.note-btn {
     margin-top: 20px;
 }
 
+/* 
 img {
     width: 50%;
     object-fit: cover;
