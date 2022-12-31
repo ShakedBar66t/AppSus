@@ -4,13 +4,13 @@ import { MailPreview } from "./mail-preview.jsx"
 const { useParams, Link } = ReactRouterDOM
 
 
-export function MailList({ mails, mailRead }) {
+export function MailList({ mails, mailRead, setIsOpen }) {
 
     return (
         <table border="0">
             <thead>
                 <tr className="tr-head">
-                    <th className="mail-nav-phone"><MailNav /> <MailFilter /> </th>
+                    <th className="mail-nav-phone"><MailNav setIsOpen={setIsOpen} /> <MailFilter /> </th>
                 </tr>
             </thead>
             <tbody>

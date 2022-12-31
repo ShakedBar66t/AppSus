@@ -11,14 +11,14 @@ export function NoteIndex() {
 
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
     const [notes, setNotes] = useState([])
-    const [updateFromAdd, setupdateFromAdd] = useState([false])
+    const [updateFromAdd, setUpdateFromAdd] = useState(false)
 
     useEffect(() => {
         loadNotes()
-    }, [filterBy])
+    }, [updateFromAdd, filterBy])
 
     function updateNotes() {
-        setupdateFromAdd(!updateFromAdd)
+        setUpdateFromAdd(!updateFromAdd)
     }
 
     function loadNotes() {
@@ -48,15 +48,15 @@ export function NoteIndex() {
         })
     }
 
-    function onPinNote(e, noteId){
+    function onPinNote(e, noteId) {
         e.preventDefault()
         noteService.pinNote(noteId).then(() => {
             loadNotes()
         })
     }
 
-    function onSendAsEmail(){
-        
+    function onSendAsEmail() {
+
     }
 
 

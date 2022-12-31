@@ -116,8 +116,15 @@ function _createMails() {
             {
                 id: utilService.makeId(),
                 to: 'user@appsus.com',
-                subject: 'test',
-                body: 'big test',
+                subject: 'Your Zoom password has been reset.',
+                body: `Dear Itai Belotserkovski,
+
+                The password for your Zoom account (itaibe2904@gmail.com) was successfully reset on Dec 20, 2022 at 05:04 PM GMT.
+                
+                If you have any questions, please contact Zoom Customer Support.
+                
+                Thank you,
+                The Zoom Team`,
                 isRead: false,
                 isChecked: false,
                 isStared: false,
@@ -171,7 +178,7 @@ function _createMails() {
                 id: utilService.makeId(),
                 to: `user@appsus.com`,
                 subject: 'החשבון שלך בתשלומי החנייה',
-                body: 'big test',
+                body: 'מזכירים לך שאתה צריך לשלם על החנייה שלך!',
                 isRead: true,
                 isChecked: false,
                 isStared: false,
@@ -238,7 +245,8 @@ function _createMails() {
                 id: utilService.makeId(),
                 to: `user@appsus.com`,
                 subject: 'test',
-                body: 'big test',
+                body: `Make that big trip happen. To kick-start your planning, we’ve got the best places to go right now.
+                From laid-back beaches to buzzing cities, there’s something for everyone. Plus, tips for where to stay, things to do, and more.`,
                 isRead: true,
                 isChecked: false,
                 isStared: false,
@@ -285,6 +293,106 @@ function _createMails() {
                 isDeleted: false,
                 sentAt: `29 Oct`,
                 from: 'Slack @slack.com>',
+                fullname: 'Mahatma Appsus',
+            }, {
+                id: utilService.makeId(),
+                to: 'user@appsus.com',
+                subject: 'Your Zoom password has been reset.',
+                body: `Dear Itai Belotserkovski,
+
+                The password for your Zoom account (itaibe2904@gmail.com) was successfully reset on Dec 20, 2022 at 05:04 PM GMT.
+                
+                If you have any questions, please contact Zoom Customer Support.
+                
+                Thank you,
+                The Zoom Team`,
+                isRead: false,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `08:43`,
+                from: 'Dropbox @dropbox.com',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `user@appsus.com`,
+                subject: 'מרגישים את הרומנטיקה באוויר? (פרסומת)',
+                body: `לאחר טעינת הקוד באיזור האישי בוולט
+
+                חפשו גלידת שטראוס ותוכלו להינות מההטבה
+                
+                לקבלת 20 ₪
+                מתנה >>
+                *לרכישה בחנות גלידת שטראוס בוולט, למימוש עד ליום 31.12.22.
+                
+                **המשלוח באחריות וולט, ולפי תנאי המשלוח באתר וולט.
+                
+                הודעה זו נשלחה ע"י strauss@mailing.unilever.co.il,
+                הודעה זו נשלחה אליכם מאחר והסכמתם לקבל הודעות שיווקיות מקבוצת חברות יוניליוור ישראל.
+                אם אינכם מעוניינים להמשיך לקבל הודעות באפשרותכם לבצע הסרה מרשימת התפוצה.
+                למידע נוסף אתם מוזמנים לקרוא עוד על תנאי הפרטיות שלנו.
+                קבוצת יוניליוור ישראל | גלבוע 3 | קרית שדה התעופה | 7019900 | Israel | 1-800-780-780 https://www.unilever.co.il/ | כתובת המייל שלנו לפניות-Strauss.Icecream@unilever.com
+                
+                `,
+                isRead: false,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `22 Oct`,
+                from: 'StraussIL @mailing.unilever.co.il>',
+                fullname: 'Mahatma Appsus',
+            }, {
+                id: utilService.makeId(),
+                to: `user@appsus.com`,
+                subject: 'Planning a big trip in 2023? Start here.',
+                body: `Make that big trip happen. To kick-start your planning, we’ve got the best places to go right now.
+                 From laid-back beaches to buzzing cities, there’s something for everyone. Plus, tips for where to stay, things to do, and more.`,
+                isRead: false,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `28 Nov`,
+                from: 'Tripadvisor @mp1.tripadvisor.com',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `user@appsus.com`,
+                subject: 'Tommy and 40 others made changes in your shared folders',
+                body: 'big test',
+                isRead: true,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `16 Nov`,
+                from: 'Slack @slack.com>',
+                fullname: 'Mahatma Appsus',
+            }, {
+                id: utilService.makeId(),
+                to: `user@appsus.com`,
+                subject: 'הזמנתך מוכנה לאיסוף בסניף קריון ק.ביאליק',
+                body: `לקוח יקר, הזמנתך מס' 16060923 מוכנה לאיסוף בסניף קריון ק.ביאליק בכתובת דרך עכו 192 קרית ביאליק (פתח ב-Waze | פתח ב-Google Maps).
+
+                לתשומת לבך - לצורך האיסוף יש להציג ת.ז ישראלית או רישיון נהיגה של בעל כרטיס האשראי. כמו כן תעודת הזיהוי של אוסף ההזמנה תצולם במעמד האיסוף.
+
+                מומלץ מאוד להזמין תור לאיסוף הזמנתך בקישור הבא: https://ksp.co.il/q/page/tor_app_schedule.php?token=04f373a4c702a854b25b98e861f2ce3f הזמנת תור איננה חובה, אך מומלצת מאוד ועשויה לקצר זמני המתנה משמעותיים
+
+                מספר החשבונית המשויכת להזמנתך: 398329 (אנא הצג מספר זה בסניף לצורך איתור ההזמנה).
+
+                שעות הפעילות הינן: ימי א'-ה': 10:00-19:00
+                ימי ו': 09:00-14:00
+                קריון שער 3
+
+                דרכי יצירת קשר
+                פנייה לשירות לקוחות
+                פקס: 04-8500-850`,
+                isRead: true,
+                isChecked: false,
+                isStared: true,
+                isDeleted: false,
+                sentAt: `11 Dec`,
+                from: 'KSP.co.il @ksp.co.il',
                 fullname: 'Mahatma Appsus',
             },
             {

@@ -49,7 +49,7 @@ export function MailIndex({ filterByFromFilter }) {
         <div className="cmps-container">
             <div className="nav-container">  <MailNav setIsOpen={setIsComposeOpen} loadMails={loadMails} unreadMailsCount={unreadMailsCount} /></div>
             <div className="mail-list-container">
-                <MailList mails={mails} mailRead={mailRead} />
+                <MailList mails={mails} mailRead={mailRead} setIsOpen={setIsComposeOpen} />
             </div>
             <div className={(isComposeOpen) ? "mail-compose-container" : "mail-compose-container hidden"}>
                 {/* <div className="mail-compose-container"> */}

@@ -43,9 +43,9 @@
         font-size: 15px;
     }
 
-    .app-header {
+    /* .app-header {
         display: none;
-    }
+    } */
 
     .mail-index {
         display: flex;
@@ -71,6 +71,7 @@
     .mail-filter {
         width: 100%;
         background-color: aquamarine;
+        display: none;
     }
 
     .mail-filter-form {
@@ -141,15 +142,17 @@
         display: none;
     }
 
-    /* //////////////////////////////////// the nav bar 
+    /* //////////////////////////////////// the nav bar  */
     th.mail-nav-phone {
         display: block;
-    } */
+    }
 
     /* details */
     div.mail-details {
+
         height: 80vh;
         width: 90vw;
+        right: 10vw;
         padding: 1rem;
         display: flex;
         flex-direction: column;
@@ -162,5 +165,34 @@
         display: block;
     }
 
+    .sibe-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        flex-direction: column;
+        height: 100vh;
+        background-color: #f6f8fc;
+        border-inline-start: 1px solid #ccc;
+        min-width: 200px;
+        transform: translateX(-100%);
+        transition: transform .6s, box-shadow .6s;
+    }
 
+
+    /* composer */
+
+    .mail-compose-container {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        right: 3vw;
+        height: 100vh;
+        width: 99vw;
+        background-color: inherit;
+    }
+
+    textarea.compose-text {
+        height: 72vh;
+    }
 }
