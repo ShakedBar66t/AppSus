@@ -28,203 +28,204 @@ export const mailService = {
 function query(read = 'all', filterBy = getDefaultFilter()) {
     return storageService
         .query(MAIL_KEY)
-    /////////// הוספה של שקד
+}
+/////////// הוספה של שקד
 
-    function addNote(note) {
-        let emails = loadFromStorage()
-        const newEmail = note
-        newEmail.id = utilService.makeId()
-        newEmail.body = newEmail.info.txt
-        newEmail.from = { fullName: 'from note', email: 'note@appsus.co' }
-        newEmail.isPin = false
-        newEmail.status = 'inbox'
-        newEmail.isRead = false
-        newEmail.sentAt = new Date()
-        emails.unshift(newEmail)
-        saveToStorage(emails)
-    }
+function addNote(note) {
+    let emails = loadFromStorage()
+    const newEmail = note
+    newEmail.id = utilService.makeId()
+    newEmail.body = newEmail.info.txt
+    newEmail.from = { fullName: 'from note', email: 'note@appsus.co' }
+    newEmail.isPin = false
+    newEmail.status = 'inbox'
+    newEmail.isRead = false
+    newEmail.sentAt = new Date()
+    emails.unshift(newEmail)
+    saveToStorage(emails)
+}
 
-    /////////////
+/////////////
 
-    function query(filterBy = getDefaultFilter()) {
-        return storageService.query(MAIL_KEY)
-            .then(mails => {
-                if (filterBy.txt && read === null) {
-                    mails = mails.filter(mail => mail.body.includes(filterBy.txt));
-                }
-                if (read === 'unread') {
-                    mails = mails.filter(mail => !mail.isRead);
-                }
-                return mails;
-            });
-    }
-
-    // function query(filterBy = getDefaultFilter(),read='all') {
-    //     debugger
-    //     return storageService
-    //         .query(MAIL_KEY)
-    //         .then(mails => {
-    //             if (filterBy.txt && read === 'all') {
-    //                 // mails = mails.filter(mail => mail.body.includes(filterBy.txt));
-    //             }
-    //             // if (filterBy.txt && read === 'read') {
-    //             //     mails = mails.filter(mail => mail.isRead === filterBy.isRead && mail.body.includes(filterBy.txt))
-    //             //     // mails = mails.filter(mail => mail.body.includes(filterBy.txt))
-    //             // }
-    //             // else if (!filterBy.isRead) {
-    //             //     mails = mails.filter(mail => mail.isRead === filterBy.isRead);
-    //             // }
-    //             return mails;
-    //         });
-    // }
-
-    function getUnreadCount() {
-        return mailService.query().then(mails => {
-            return mails.reduce((unreadCount, mail) => {
-                if (mail.isRead || mail.isDeleted || mail.from === 'user@appsus.com') {
-                    return unreadCount;
-                } else {
-                    return unreadCount + 1;
-                }
-            }, 0);
+function query(filterBy = getDefaultFilter()) {
+    return storageService.query(MAIL_KEY)
+        .then(mails => {
+            if (filterBy.txt) {
+                mails = mails.filter(mail => mail.body.includes(filterBy.txt));
+            }
+            if (read === 'unread') {
+                mails = mails.filter(mail => !mail.isRead);
+            }
+            return mails;
         });
+}
+
+// function query(filterBy = getDefaultFilter(),read='all') {
+//     debugger
+//     return storageService
+//         .query(MAIL_KEY)
+//         .then(mails => {
+//             if (filterBy.txt && read === 'all') {
+//                 // mails = mails.filter(mail => mail.body.includes(filterBy.txt));
+//             }
+//             // if (filterBy.txt && read === 'read') {
+//             //     mails = mails.filter(mail => mail.isRead === filterBy.isRead && mail.body.includes(filterBy.txt))
+//             //     // mails = mails.filter(mail => mail.body.includes(filterBy.txt))
+//             // }
+//             // else if (!filterBy.isRead) {
+//             //     mails = mails.filter(mail => mail.isRead === filterBy.isRead);
+//             // }
+//             return mails;
+//         });
+// }
+
+function getUnreadCount() {
+    return mailService.query().then(mails => {
+        return mails.reduce((unreadCount, mail) => {
+            if (mail.isRead || mail.isDeleted || mail.from === 'user@appsus.com') {
+                return unreadCount;
+            } else {
+                return unreadCount + 1;
+            }
+        }, 0);
+    });
+}
+
+// function query(filterBy = getDefaultFilter()) {
+//     return storageService.query(MAIL_KEY)
+//         .then(mails => {
+//             if (filterBy === 'starred') {
+//                 mails = mails.filter(mail => mail.stared === true)
+//             }
+//             // if (filterBy==='') {
+//             //     mails = mails.filter(mail => mail.listPrice.amount <= filterBy.maxPrice)
+//             // }
+//             return mails
+//         })
+// }
+
+// const filterby = {
+//     status: 'inbox/sent/trash/draft',
+//     txt: 'puki', // no need to support complex text search
+//     isRead: true, // (optional property, if missing: show all)
+//     isStared: true, // (optional property, if missing: show all)
+//     lables: ['important', 'romantic'] // has any of the labels
+//    }
+
+function get(mailId) {
+    return storageService.get(MAIL_KEY, mailId)
+    // return axios.get(MAIL_KEY, mailId)
+}
+
+function remove(mailId) {
+    // console.log(mailId)
+    return storageService.remove(MAIL_KEY, mailId)
+}
+
+function save(mail) {
+    return storageService.post(MAIL_KEY, mail) //// אם אין תיצור 
+}
+
+function update(mail) {
+    return storageService.put(MAIL_KEY, mail) //// אם יש תעדכן 
+}
+
+function getEmptyMail() {
+
+    return {
+        id: 'e101',
+        subject: 'Miss you!',
+        body: 'Would love to catch up sometimes',
+        isRead: false,
+        isChecked: false,
+        isStared: false,
+        isDeleted: false,
+        sentAt: 1551133930594,
+        from: 'momo@momo.com',
+        to: 'user@appsus.com'
     }
+}
 
-    // function query(filterBy = getDefaultFilter()) {
-    //     return storageService.query(MAIL_KEY)
-    //         .then(mails => {
-    //             if (filterBy === 'starred') {
-    //                 mails = mails.filter(mail => mail.stared === true)
-    //             }
-    //             // if (filterBy==='') {
-    //             //     mails = mails.filter(mail => mail.listPrice.amount <= filterBy.maxPrice)
-    //             // }
-    //             return mails
-    //         })
-    // }
+function getDefaultFilter() {
+    return { txt: '', read: 'read' }
+}
 
-    // const filterby = {
-    //     status: 'inbox/sent/trash/draft',
-    //     txt: 'puki', // no need to support complex text search
-    //     isRead: true, // (optional property, if missing: show all)
-    //     isStared: true, // (optional property, if missing: show all)
-    //     lables: ['important', 'romantic'] // has any of the labels
-    //    }
-
-    function get(mailId) {
-        return storageService.get(MAIL_KEY, mailId)
-        // return axios.get(MAIL_KEY, mailId)
-    }
-
-    function remove(mailId) {
-        // console.log(mailId)
-        return storageService.remove(MAIL_KEY, mailId)
-    }
-
-    function save(mail) {
-        return storageService.post(MAIL_KEY, mail) //// אם אין תיצור 
-    }
-
-    function update(mail) {
-        return storageService.put(MAIL_KEY, mail) //// אם יש תעדכן 
-    }
-
-    function getEmptyMail() {
-
-        return {
-            id: 'e101',
-            subject: 'Miss you!',
-            body: 'Would love to catch up sometimes',
-            isRead: false,
-            isChecked: false,
-            isStared: false,
-            isDeleted: false,
-            sentAt: 1551133930594,
-            from: 'momo@momo.com',
-            to: 'user@appsus.com'
-        }
-    }
-
-    function getDefaultFilter() {
-        return { txt: '', read: 'read' }
-    }
-
-    function _createMails() {
-        let mails = utilService.loadFromStorage(MAIL_KEY)
-        if (!mails || !mails.length) {
-            mails = [
-                {
-                    id: utilService.makeId(),
-                    to: 'user@appsus.com',
-                    subject: 'test',
-                    body: 'big test',
-                    isRead: false,
-                    isChecked: false,
-                    isStared: false,
-                    isDeleted: false,
-                    sentAt: `08:43`,
-                    from: 'Dropbox @dropbox.com',
-                    fullname: 'Mahatma Appsus',
-                },
-                {
-                    id: utilService.makeId(),
-                    to: `haim@appsus.com`,
-                    subject: 'Itai, נשארו רק עוד יומיים לקבל בחזרה עד 400 ₪! ⌛',
-                    body: 'big test',
-                    isRead: true,
-                    isChecked: false,
-                    isStared: false,
-                    isDeleted: false,
-                    sentAt: `28 Dec`,
-                    from: 'user@appsus.com',
-                    fullname: 'Mahatma Appsus',
-                },
-                {
-                    id: utilService.makeId(),
-                    to: `1usver@appsus.com`,
-                    subject: '[Slack] New messages from Avi Isakov - Coding Academy and Shaked Barsheshet in Coding Academy - NOV 22',
-                    body: `You have a new mention in Coding Academy - NOV 22 (codingacademybootcamp.slack.com),
+function _createMails() {
+    let mails = utilService.loadFromStorage(MAIL_KEY)
+    if (!mails || !mails.length) {
+        mails = [
+            {
+                id: utilService.makeId(),
+                to: 'user@appsus.com',
+                subject: 'test',
+                body: 'big test',
+                isRead: false,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `08:43`,
+                from: 'Dropbox @dropbox.com',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `haim@appsus.com`,
+                subject: 'Itai, נשארו רק עוד יומיים לקבל בחזרה עד 400 ₪! ⌛',
+                body: 'big test',
+                isRead: true,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `28 Dec`,
+                from: 'user@appsus.com',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `1usver@appsus.com`,
+                subject: '[Slack] New messages from Avi Isakov - Coding Academy and Shaked Barsheshet in Coding Academy - NOV 22',
+                body: `You have a new mention in Coding Academy - NOV 22 (codingacademybootcamp.slack.com),
                 From your conversation with Avi Isakov - Coding Academy and Shaked Barsheshet`  ,
-                    isRead: false,
-                    isChecked: false,
-                    isStared: false,
-                    isDeleted: false,
-                    sentAt: `28 Dec`,
-                    from: 'Slack @slack.com',
-                    fullname: 'Mahatma Appsus',
-                },
-                {
-                    id: utilService.makeId(),
-                    to: `user@appsus.com`,
-                    subject: '[Slack] New messages from Avi Isakov - Coding Academy and Shaked Barsheshet in Coding Academy - NOV 22',
-                    body: `You have a new mention in Coding Academy - NOV 22 (codingacademybootcamp.slack.com),
+                isRead: false,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `28 Dec`,
+                from: 'Slack @slack.com',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `user@appsus.com`,
+                subject: '[Slack] New messages from Avi Isakov - Coding Academy and Shaked Barsheshet in Coding Academy - NOV 22',
+                body: `You have a new mention in Coding Academy - NOV 22 (codingacademybootcamp.slack.com),
                 From your conversation with Avi Isakov - Coding Academy and Shaked Barsheshet`  ,
-                    isRead: false,
-                    isChecked: false,
-                    isStared: false,
-                    isDeleted: false,
-                    sentAt: `22 Dec`,
-                    from: 'Slack @slack.com',
-                    fullname: 'Mahatma Appsus',
-                },
-                {
-                    id: utilService.makeId(),
-                    to: `user@appsus.com`,
-                    subject: 'החשבון שלך בתשלומי החנייה',
-                    body: 'big test',
-                    isRead: true,
-                    isChecked: false,
-                    isStared: false,
-                    isDeleted: false,
-                    sentAt: `15 Dec`,
-                    from: 'Pango @pango.com',
-                    fullname: 'Mahatma Appsus',
-                },
-                {
-                    id: utilService.makeId(),
-                    to: `user@appsus.com`,
-                    subject: 'הזמנתך מוכנה לאיסוף בסניף נוף הגליל (נצרת עילית)',
-                    body: `לקוח יקר, הזמנתך מס' 16321516 מוכנה לאיסוף בסניף נוף הגליל (נצרת עילית) בכתובת דרך החטיבות 15 (פתח ב-Waze | פתח ב-Google Maps).
+                isRead: false,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `22 Dec`,
+                from: 'Slack @slack.com',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `user@appsus.com`,
+                subject: 'החשבון שלך בתשלומי החנייה',
+                body: 'big test',
+                isRead: true,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `15 Dec`,
+                from: 'Pango @pango.com',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `user@appsus.com`,
+                subject: 'הזמנתך מוכנה לאיסוף בסניף נוף הגליל (נצרת עילית)',
+                body: `לקוח יקר, הזמנתך מס' 16321516 מוכנה לאיסוף בסניף נוף הגליל (נצרת עילית) בכתובת דרך החטיבות 15 (פתח ב-Waze | פתח ב-Google Maps).
 
                 לתשומת לבך - לצורך האיסוף יש להציג ת.ז ישראלית או רישיון נהיגה של בעל כרטיס האשראי. כמו כן תעודת הזיהוי של אוסף ההזמנה תצולם במעמד האיסוף.
 
@@ -239,19 +240,19 @@ function query(read = 'all', filterBy = getDefaultFilter()) {
                 דרכי יצירת קשר
                 פנייה לשירות לקוחות
                 פקס: 04-8500-850`,
-                    isRead: false,
-                    isChecked: false,
-                    isStared: true,
-                    isDeleted: false,
-                    sentAt: `11 Dec`,
-                    from: 'KSP.co.il @ksp.co.il',
-                    fullname: 'Mahatma Appsus',
-                },
-                {
-                    id: utilService.makeId(),
-                    to: `user@appsus.com`,
-                    subject: 'הזמנתך מוכנה לאיסוף בסניף קריון ק.ביאליק',
-                    body: `לקוח יקר, הזמנתך מס' 16060923 מוכנה לאיסוף בסניף קריון ק.ביאליק בכתובת דרך עכו 192 קרית ביאליק (פתח ב-Waze | פתח ב-Google Maps).
+                isRead: false,
+                isChecked: false,
+                isStared: true,
+                isDeleted: false,
+                sentAt: `11 Dec`,
+                from: 'KSP.co.il @ksp.co.il',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `user@appsus.com`,
+                subject: 'הזמנתך מוכנה לאיסוף בסניף קריון ק.ביאליק',
+                body: `לקוח יקר, הזמנתך מס' 16060923 מוכנה לאיסוף בסניף קריון ק.ביאליק בכתובת דרך עכו 192 קרית ביאליק (פתח ב-Waze | פתח ב-Google Maps).
 
                 לתשומת לבך - לצורך האיסוף יש להציג ת.ז ישראלית או רישיון נהיגה של בעל כרטיס האשראי. כמו כן תעודת הזיהוי של אוסף ההזמנה תצולם במעמד האיסוף.
 
@@ -266,72 +267,72 @@ function query(read = 'all', filterBy = getDefaultFilter()) {
                 דרכי יצירת קשר
                 פנייה לשירות לקוחות
                 פקס: 04-8500-850`,
-                    isRead: true,
-                    isChecked: false,
-                    isStared: true,
-                    isDeleted: false,
-                    sentAt: `11 Dec`,
-                    from: 'KSP.co.il @ksp.co.il',
-                    fullname: 'Mahatma Appsus',
-                },
-                {
-                    id: utilService.makeId(),
-                    to: `user@appsus.com`,
-                    subject: 'test',
-                    body: 'big test',
-                    isRead: true,
-                    isChecked: false,
-                    isStared: false,
-                    isDeleted: false,
-                    sentAt: `3 Dec`,
-                    from: 'user@appsus.com',
-                    fullname: 'Mahatma Appsus',
-                },
-                {
-                    id: utilService.makeId(),
-                    to: `user@appsus.com`,
-                    subject: 'Planning a big trip in 2023? Start here.',
-                    body: `Make that big trip happen. To kick-start your planning, we’ve got the best places to go right now.
+                isRead: true,
+                isChecked: false,
+                isStared: true,
+                isDeleted: false,
+                sentAt: `11 Dec`,
+                from: 'KSP.co.il @ksp.co.il',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `user@appsus.com`,
+                subject: 'test',
+                body: 'big test',
+                isRead: true,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `3 Dec`,
+                from: 'user@appsus.com',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `user@appsus.com`,
+                subject: 'Planning a big trip in 2023? Start here.',
+                body: `Make that big trip happen. To kick-start your planning, we’ve got the best places to go right now.
                  From laid-back beaches to buzzing cities, there’s something for everyone. Plus, tips for where to stay, things to do, and more.`,
-                    isRead: false,
-                    isChecked: false,
-                    isStared: false,
-                    isDeleted: false,
-                    sentAt: `28 Nov`,
-                    from: 'Tripadvisor @mp1.tripadvisor.com',
-                    fullname: 'Mahatma Appsus',
-                },
-                {
-                    id: utilService.makeId(),
-                    to: `user@appsus.com`,
-                    subject: 'Tommy and 40 others made changes in your shared folders',
-                    body: 'big test',
-                    isRead: true,
-                    isChecked: false,
-                    isStared: false,
-                    isDeleted: false,
-                    sentAt: `16 Nov`,
-                    from: 'Slack @slack.com>',
-                    fullname: 'Mahatma Appsus',
-                },
-                {
-                    id: utilService.makeId(),
-                    to: `user@appsus.com`,
-                    subject: '[Slack] New messages from Inbal Avidov and Tommy Irmia - Coding Academy in Coding Academy - NOV 22',
-                    body: 'big test',
-                    isRead: true,
-                    isChecked: false,
-                    isStared: false,
-                    isDeleted: false,
-                    sentAt: `29 Oct`,
-                    from: 'Slack @slack.com>',
-                    fullname: 'Mahatma Appsus',
-                },
-                {
-                    id: utilService.makeId(),
-                    to: `user@appsus.com`,
-                    subject: 'מרגישים את הרומנטיקה באוויר? (פרסומת)',
-                    body: `לאחר טעינת הקוד באיזור האישי בוולט
+                isRead: false,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `28 Nov`,
+                from: 'Tripadvisor @mp1.tripadvisor.com',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `user@appsus.com`,
+                subject: 'Tommy and 40 others made changes in your shared folders',
+                body: 'big test',
+                isRead: true,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `16 Nov`,
+                from: 'Slack @slack.com>',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `user@appsus.com`,
+                subject: '[Slack] New messages from Inbal Avidov and Tommy Irmia - Coding Academy in Coding Academy - NOV 22',
+                body: 'big test',
+                isRead: true,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `29 Oct`,
+                from: 'Slack @slack.com>',
+                fullname: 'Mahatma Appsus',
+            },
+            {
+                id: utilService.makeId(),
+                to: `user@appsus.com`,
+                subject: 'מרגישים את הרומנטיקה באוויר? (פרסומת)',
+                body: `לאחר טעינת הקוד באיזור האישי בוולט
 
                 חפשו גלידת שטראוס ותוכלו להינות מההטבה
                 
@@ -348,63 +349,63 @@ function query(read = 'all', filterBy = getDefaultFilter()) {
                 קבוצת יוניליוור ישראל | גלבוע 3 | קרית שדה התעופה | 7019900 | Israel | 1-800-780-780 https://www.unilever.co.il/ | כתובת המייל שלנו לפניות-Strauss.Icecream@unilever.com
                 
                 `,
-                    isRead: false,
-                    isChecked: false,
-                    isStared: false,
-                    isDeleted: false,
-                    sentAt: `22 Oct`,
-                    from: 'StraussIL @mailing.unilever.co.il>',
-                    fullname: 'Mahatma Appsus',
-                },
+                isRead: false,
+                isChecked: false,
+                isStared: false,
+                isDeleted: false,
+                sentAt: `22 Oct`,
+                from: 'StraussIL @mailing.unilever.co.il>',
+                fullname: 'Mahatma Appsus',
+            },
 
-            ]
-        }
-        utilService.saveToStorage(MAIL_KEY, mails)
+        ]
     }
+    utilService.saveToStorage(MAIL_KEY, mails)
+}
 
-    function _createMail() {
-        const mail = getEmptyMail()
-        mail.id = utilService.makeId()
-        return mail
-    }
+function _createMail() {
+    const mail = getEmptyMail()
+    mail.id = utilService.makeId()
+    return mail
+}
 
-    function getNextMailId(mailId) {
-        return storageService.query(MAIL_KEY)
-            .then(mails => {
-                var idx = mails.findIndex(mail => mail.id === mailId)
-                if (idx === mails.length - 1) idx = -1
-                return mails[idx + 1].id
-            })
-    }
+function getNextMailId(mailId) {
+    return storageService.query(MAIL_KEY)
+        .then(mails => {
+            var idx = mails.findIndex(mail => mail.id === mailId)
+            if (idx === mails.length - 1) idx = -1
+            return mails[idx + 1].id
+        })
+}
 
-    function getPrevMailId(mailId) {
-        return storageService.query(MAIL_KEY)
-            .then(mails => {
-                var idx = mails.findIndex(mail => mail.id === mailId)
-                if (idx === 0) idx = mails.length - 1
-                return mails[idx - 1].id
-            })
-    }
+function getPrevMailId(mailId) {
+    return storageService.query(MAIL_KEY)
+        .then(mails => {
+            var idx = mails.findIndex(mail => mail.id === mailId)
+            if (idx === 0) idx = mails.length - 1
+            return mails[idx - 1].id
+        })
+}
 
-    function addNewMail(recipients, subject, body) {
-        const newMail = {
-            to: recipients,
-            subject,
-            body,
-            isRead: true,
-            isChecked: false,
-            isStared: false,
-            isDeleted: false,
-            sentAt: _getTimeString(),
-            from: 'user@appsus.com',
-            fullname: 'Mahatma Appsus',
-        }
-        return storageService.post(MAIL_KEY, newMail)
+function addNewMail(recipients, subject, body) {
+    const newMail = {
+        to: recipients,
+        subject,
+        body,
+        isRead: true,
+        isChecked: false,
+        isStared: false,
+        isDeleted: false,
+        sentAt: _getTimeString(),
+        from: 'user@appsus.com',
+        fullname: 'Mahatma Appsus',
     }
+    return storageService.post(MAIL_KEY, newMail)
+}
 
-    function _getTimeString() {
-        const date = new Date(Date.now());
-        const hours = date.getHours().toString().padStart(2, '0');
-        const minutes = date.getMinutes().toString().padStart(2, '0');
-        return `${hours}:${minutes}`;
-    }
+function _getTimeString() {
+    const date = new Date(Date.now());
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+}

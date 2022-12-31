@@ -3,7 +3,6 @@ const { useState, Fragment } = React
 
 export function NotePreview({ note, onRemoveNote, onCopyNote }) {
 
->>>>>>> 3d295cb489e541dff8da641afed1ee1c1e372f07
     const todos = note.info.todos
     // if(!note.info.todos) return <h1>Loading..</h1>
     if (note.info.todos) { var finalList = createTodos(todos) }
