@@ -19,7 +19,7 @@
 
 .note-preview h2,
 .note-preview h3 {
-    padding: 0.3rem;
+    padding: 0.2rem;
 }
 
 .note-preview h1 {
@@ -33,22 +33,6 @@
 .note-preview h3 {
     font-size: 0.8rem;
     font-weight: normal;
-}
-
-
-.gallery-item li {
-    margin-bottom: 0.1rem;
-    font-family: cursive;
-    width: fit-content;
-    font-size: 1rem;
-    cursor: text;
-    margin-bottom: 10px;
-}
-
-.gallery-item {
-    height: max-content;
-    border-radius: 1rem;
-    border: 0.15rem solid var(--lgrey);
 }
 
 img{
@@ -94,6 +78,7 @@ img{
 
 .text-container{
     display: block;
+    flex-direction: column;
     padding: 0.2rem;
     justify-self: center;
     height: 12rem;

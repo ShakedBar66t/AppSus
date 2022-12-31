@@ -9,13 +9,19 @@ _createNotes()
 
 export const noteService = {
     query,
+    get,
     getDefaultFilter,
     remove,
     saveNote,
     copyNote,
     pinNote,
-    sendAsEmail
+    sendAsEmail,
 }
+
+function get(noteId){
+    return storageService.get(NOTE_KEY, noteId)
+}
+
 
 function sendAsEmail(id){
     getById(id).then((note) => {
@@ -101,6 +107,9 @@ function _saveToStorage(notes) {
 
 function _loadFromStorage() {
     return utilService.loadFromStorage(NOTE_KEY)
+}
+
+function getEmptyNote(){
 }
 
 function _createNotes() {

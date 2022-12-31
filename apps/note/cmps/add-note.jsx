@@ -28,7 +28,6 @@ export function AddNote({ updateNotes }) {
 
     function onSaveNote(ev) {
         updateNotes()
-        console.log('ohados kabanos')
         ev.preventDefault()
         noteService.saveNote(note).then(() => {
             console.log(note)
@@ -36,9 +35,7 @@ export function AddNote({ updateNotes }) {
     }
 
     function handleChange(e) {
-        console.log(e)
         const { name: field, value } = e.target
-        console.log('value', e.target.files)
         setNote((preValue) => {
             if (field === 'backgroundColor') {
                 note[field] = value

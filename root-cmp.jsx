@@ -43,7 +43,7 @@ export function App() {
                 <Route path="/details/:mailId" element={<MailDetails />} />
 
 
-                <Route path="/note/edit" element={<NoteEdit />} />
+                <Route path="/note/edit/:noteId" element={<NoteEdit />} />
                 <Route path="/note" element={<NoteIndex />} />
                 <Route path="/book" element={<BookIndex />} />
             </Routes>

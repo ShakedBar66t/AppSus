@@ -1,67 +1,123 @@
-import { uploadService } from '../../../services/upload.service.js'
-import { noteService } from '../services/note.service.js'
-const { useState } = React
 
-export function NoteEdit({ updateNotes }) {
+const { useState, useEffect } = React
+const { useParams, useNavigate } = ReactRouterDOM
 
-    function onSaveNote() {
-        // debugger
-        updateNotes()
+import { noteService } from "../services/note.service.js"
+import { uploadService } from "../../../services/upload.service.js"
+import { showSuccessMsg } from "../services/event-bus.service.js"
+import { NoteTodo } from "../cmps/note-todo.jsx"
+
+
+export function NoteEdit() {
+
+    const { noteId } = useParams()
+    const navigate = useNavigate()
+
+    const [noteToEdit, setNoteToEdit] = useState({
+        type: '',
+        backgroundColor: '',
+        info: {
+            txt: '',
+            url: '',
+            title: '',
+            label: '',
+            todos: ''
+        },
+    })
+
+    function onSaveTodo() {
+
     }
 
-    const [noteToEdit, setNoteToEdit] = useState({ note })
+    function onSaveNote(ev) {
+        ev.preventDefault()
+        noteService.saveNote(noteToEdit).then((note) => {
+            console.log('note saved', note)
+            navigate('/note')
+            showSuccessMsg('Note Saved')
+        })
 
-    function handleChange({ target }) {
-        const field = target.name
-        console.log('field', field)
-        const value = target.value
-        console.log('value', value)
-
-        if (field === 'file') {
-            uploadService.readURL(target.files).then((uploadedFile) =>
-                useState((prevState) => ({
-                    note: { ...prevState.note, file: uploadedFile }
-                }))
-            )
-        }
-        useState((prevState) => ({
-            note: { ...prevState.note, [field]: value }
-        }))
     }
-    const { title, txt, file, backgroundColor } = note
+
+    function loadNotes() {
+        noteService.get(noteId)
+            .then((note) => setNoteToEdit(note))
+            .catch((err) => {
+                console.log('Had issues in note details', err)
+            })
+    }
+
+    useEffect(() => {
+        if (!noteId) return
+        loadNotes()
+    }, [])
+
+    function handleEditChange({ target }) {
+        let { value, type, name: field } = target
+        setNoteToEdit((prevNote) => {
+            if (field === 'backgroundColor') {
+                noteToEdit[field] = value
+            } else {
+                noteToEdit.info[field] = value
+            }
+
+            if (field === 'url') {
+                uploadService.readURL(target.files).then((uploadedFile) =>
+                    noteToEdit.info[field] = uploadedFile
+                )
+            }
+            return {
+                ...prevNote
+            }
+        })
+    }
+
+
     return (
-        <section className="note-edit">
-            <h2>Edit Note</h2>
-            {/* <form className="note-form" onSubmit={onSaveNote()}>
-                <input 
-                    className="title-input note-input"
-                    type="text"
-                    name="title"
-                    onChange={handleChange}
-                    placeholder="title"
-                    value={title} />
-                <textarea
-                    className="txt-input note-textarea"
-                    type="text"
-                    name="txt"
-                    onChange={handleChange}
-                    placeholder="Enter text here"
-                    value={txt}
-                />
+        <div className="note-edit">
+            <form className="note-form" onSubmit={onSaveNote}>
+                {/* {isExpanded && ( */}
                 <input
-                    className="color-input note-input"
+                    value={noteToEdit.info.title}
+                    type="text"
+                    placeholder="Title"
+                    name="title"
+                    onChange={handleEditChange}
+                />
+                {/* )} */}
+
+                <p>
+                    <textarea
+                        type="text"
+                        value={noteToEdit.info.txt}
+                        // onClick={handleExpanded}
+                        name="txt"
+                        placeholder="Take a note.."
+                        onChange={handleEditChange}
+                    // rows={isExpanded ? 3 : 1}
+                    ></textarea>
+                </p>
+                <input
+                    value={noteToEdit.backgroundColor}
                     type="color"
                     name="backgroundColor"
-                    onChange={handleChange}
+                    onChange={handleEditChange}
+                // onClick={handleExpanded}
+                // rows={isExpanded ? 3 : 1}
                 />
                 <input
-                    className="file-input note-input"
+                    className="url-input"
                     type="file"
-                    name="file"
-                    onChange={handleChange}
+                    name="url"
+                    onChange={handleEditChange}
+                // onClick={handleExpanded}
+                // rows={isExpanded ? 3 : 1}
                 />
-                <button className="save-btn" type="submit">Save</button>
-            </form> */}
-        </section>
+                <button type="submit" className="close-btn">
+                    Close
+                </button>
+            </form>
+                {/* <NoteTodo onSaveTodo={onSaveTodo} /> */}
+        </div>
     )
 }
