@@ -9,6 +9,9 @@
     border-bottom: 1px solid rgb(213, 190, 190);
 }
 
+td.sender-img {
+    display: none;
+}
 
 .subject {
     text-overflow: ellipsis;
@@ -94,5 +97,3 @@ table {
 .mail-preview:hover .date {
     display: none;
 }
-
-td.date {}

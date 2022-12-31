@@ -65,6 +65,8 @@ export function MailDetails() {
         <div className="mail-details">
             <div className="details-header-container">
                 <nav>
+                    <span className="back-btn fa fa-arrow-left" onClick={() => navigate(`/mail/inbox/`)}></span>
+
                     <span className="fa fa-sticky-note-o" onClick={() => console.log('sending the details to notes')}></span>
                     <span onClick={() => generalChange(mail, 'isStared')} className={(mail.isStared) ? "star fa fa-star " : "star fa fa-star-o star-box"}></span>
                     <span onClick={() => generalChange(mail, 'isRead')} className={(mail.isRead) ? "envelope fa fa-envelope-o" : "envelope fa fa-envelope-open-o"}></span>

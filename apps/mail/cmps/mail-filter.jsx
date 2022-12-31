@@ -23,7 +23,6 @@ export function MailFilter({ onSetFilter }) {
         event.preventDefault()
         console.log('handleStatusChange called:', value)
         setIsRead(value)
-        // console.log({ txt: elInputRef.current.value, isRead: isRead })
         onSetFilter({ txt: elInputRef.current.value, isRead: value })
     }
     function deleteInput() {

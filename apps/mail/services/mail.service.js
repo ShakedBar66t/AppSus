@@ -46,16 +46,16 @@ function addNote(note) {
 function query(filterBy = getDefaultFilter()) {
     return storageService.query(MAIL_KEY)
         .then(mails => {
-            mails = mails.filter(mail => mail.body.includes(filterBy.txt));
+            mails = mails.filter(mail => mail.body.includes(filterBy.txt))
             if (filterBy.isRead) {
                 mails = mails.filter(mail => mail.isRead)
             }
-            else if ((filterBy.isRead === null)) mails = mails.filter(mail => mail.body.includes(filterBy.txt));
+            else if ((filterBy.isRead === null)) mails = mails.filter(mail => mail.body.includes(filterBy.txt))
             else if (filterBy.isRead === false) {
                 mails = mails.filter(mail => !mail.isRead)
             }
-            return mails;
-        });
+            return mails
+        })
 }
 
 
@@ -63,12 +63,12 @@ function getUnreadCount() {
     return mailService.query().then(mails => {
         return mails.reduce((unreadCount, mail) => {
             if (mail.isRead || mail.isDeleted || mail.from === 'user@appsus.com') {
-                return unreadCount;
+                return unreadCount
             } else {
-                return unreadCount + 1;
+                return unreadCount + 1
             }
-        }, 0);
-    });
+        }, 0)
+    })
 }
 
 function get(mailId) {
@@ -357,8 +357,8 @@ function addNewMail(recipients, subject, body) {
 }
 
 function _getTimeString() {
-    const date = new Date(Date.now());
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    return `${hours}:${minutes}`;
+    const date = new Date(Date.now())
+    const hours = date.getHours().toString().padStart(2, '0')
+    const minutes = date.getMinutes().toString().padStart(2, '0')
+    return `${hours}:${minutes}`
 }

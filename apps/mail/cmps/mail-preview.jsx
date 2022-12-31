@@ -90,8 +90,9 @@ export function MailPreview({ mail, mailRead }) {
     }
 
     return <tr className={createClassName(mail)} >
-        <td onClick={() => generalChange(mail, 'isChecked')} className={(mail.isChecked) ? " icon fa fa-check-square-o" : " icon fa fa-square-o"} ></td>
-        <td onClick={() => generalChange(mail, 'isStared')} className={(mail.isStared) ? "star  icon fa fa-star " : "star  icon fa fa-star-o star-box"}></td>
+        <td className="sender-img fa fa-user-circle" aria-hidden="true"></td>
+        <td onClick={() => generalChange(mail, 'isChecked')} className={(mail.isChecked) ? "check-box icon fa fa-check-square-o" : "check-box icon fa fa-square-o"} ></td>
+        <td onClick={() => generalChange(mail, 'isStared')} className={(mail.isStared) ? "star icon fa fa-star " : "star icon fa fa-star-o star-box"}></td>
         <td className="sender" onClick={() => { changeIsRead() }}>
             {getMailSender(mail.from)}</td>
         <td className="subject" onClick={() => { changeIsRead() }}>
