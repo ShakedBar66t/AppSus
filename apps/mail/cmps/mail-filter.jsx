@@ -2,35 +2,29 @@ const { useState, useEffect, useRef } = React
 
 export function MailFilter({ onSetFilter }) {
 
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isRead, setIsRead] = useState(null);
-    const [filterBy, setFilterBy] = useState({ txt: '', isRead: null });
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+    const [isRead, setIsRead] = useState(null)
+    const [filterBy, setFilterBy] = useState({ txt: '', isRead: null })
     const elInputRef = useRef({ txt: '' })
 
     function handleChange(event) {
         console.log(filterBy)
-        const { value } = event.target;
+        const { value } = event.target
         setFilterBy({ txt: value })
     }
 
-    // function onSubmitFilter(event) {
-    //     event.preventDefault()
-    //     console.log(filterBy) // print the value of the filterBy object
-    //     console.log(onSetFilter) // print the value of the onSetFilter function
-    //     onSetFilter(filterBy)
-    // }
     function onSubmitFilter(event) {
         console.log('h')
-        event.preventDefault();
-        setFilterBy({ ...filterBy, txt: elInputRef.current.value }); // update the txt property in the filterBy object
-        onSetFilter(filterBy);
+        event.preventDefault()
+        setFilterBy({ ...filterBy, txt: elInputRef.current.value }) // update the txt property in the filterBy object
+        onSetFilter(filterBy)
     }
     function handleStatusChange(value) {
-        event.preventDefault();
-        console.log('handleStatusChange called:', value);
-        setIsRead(value);
+        event.preventDefault()
+        console.log('handleStatusChange called:', value)
+        setIsRead(value)
         // console.log({ txt: elInputRef.current.value, isRead: isRead })
-        onSetFilter({ txt: elInputRef.current.value, isRead: value });
+        onSetFilter({ txt: elInputRef.current.value, isRead: value })
     }
     function deleteInput() {
         elInputRef.current.value = ''
@@ -69,6 +63,6 @@ export function MailFilter({ onSetFilter }) {
                 </div >
             </form >
         </section >
-    );
+    )
 
 }
