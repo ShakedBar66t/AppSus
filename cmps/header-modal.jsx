@@ -1,7 +1,6 @@
 const { Link } = ReactRouterDOM
 
 export function HeaderModal({ onCloseModal }) {
-    console.log(closeModal)
     function closeModal() {
         onCloseModal()
     }
