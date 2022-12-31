@@ -14,6 +14,7 @@ import { NoteIndex } from "./apps/note/views/note-index.jsx"
 import { NoteEdit } from "./apps/note/views/note-edit.jsx"
 import { MailDetails } from "./apps/mail/views/mail-details.jsx"
 import { UserMsg } from "./apps/mail/cmps/user-msg.jsx"
+import { AppFooter } from "./cmps/app-footer.jsx"
 
 
 
@@ -44,7 +45,7 @@ export function App() {
                 <Route path="/note" element={<NoteIndex />} />
                 <Route path="/book" element={<BookIndex />} />
             </Routes>
+            <AppFooter />
         </section>
-
     </Router >
 }

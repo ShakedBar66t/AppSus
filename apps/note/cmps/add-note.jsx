@@ -26,8 +26,8 @@ export function AddNote({ updateNotes }) {
     })
 
     function onSaveNote(ev) {
-        updateNotes()
         ev.preventDefault()
+        updateNotes()
         noteService.saveNote(note).then(() => {
             console.log(note)
         })

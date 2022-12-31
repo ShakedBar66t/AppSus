@@ -10,7 +10,6 @@ export function NotePreview({ note, onRemoveNote, onCopyNote, onPinNote }) {
     if (note.info.todos) { var finalList = createTodos(todos) }
     
     function createTodos(todos) {
-        console.log('note.id', note.id)
         const todoList = todos.map(todo => {
             return <ul key={todo.txt}>
                 <li>{todo.txt}</li>

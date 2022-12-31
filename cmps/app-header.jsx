@@ -53,7 +53,6 @@ export function AppHeader({ useFilter }) {
                 </Link>
                 <FilterContext.Provider value={filterBy}>
                     {location.pathname.startsWith('/mail') && <MailFilter onSetFilter={onSetFilter} />}
-                    {location.pathname.startsWith('/note') && <NoteFilter onSetFilter={onSetFilter} />}
                 </FilterContext.Provider>
                 <div className="navbar-wrapper flex align-center">
                     <button onClick={toggleModal}>

@@ -1,6 +1,6 @@
-.note-form{
+.note-form {
     position: relative;
-    width: 600px;
+    width: 90%;
     margin: 32px auto 50px auto;
     background: #fff;
     padding: 7px;
@@ -31,11 +31,17 @@ form textarea {
     display: none
 }
 
-.close-btn{
+.close-btn {
     border-radius: 4px;
     cursor: pointer;
     font-size: 20px;
     border: 0;
     margin-left: 86%;
     background-color: #fff;
+}
+
+@media (max-width: 400px) {
+    .close-btn {
+        margin-left: 80%
+    }
 }
