@@ -136,7 +136,7 @@ function _createNotes() {
                 type: "note-img",
                 backgroundColor: utilService.getRandomColor(),
                 info: {
-                    url: "https://www.w3schools.com/images/w3schools_green.jpg",
+                    url: "http://some-img/me",
                     title: "Bobi and Me"
                 },
                 style: {
