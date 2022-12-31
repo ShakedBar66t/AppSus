@@ -8,6 +8,7 @@
 @import "./cmps/mail-list.css";
 @import "./cmps/mail-nav.css";
 @import "./cmps/mail-filter.css";
+@import "./cmps/user-msg.css";
 
 /* views */
 @import './views/mail-index.css';

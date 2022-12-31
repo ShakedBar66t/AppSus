@@ -13,6 +13,7 @@ import { MailIndex } from "./apps/mail/views/mail-index.jsx"
 import { NoteIndex } from "./apps/note/views/note-index.jsx"
 import { NoteEdit } from "./apps/note/views/note-edit.jsx"
 import { MailDetails } from "./apps/mail/views/mail-details.jsx"
+import { UserMsg } from "./apps/mail/cmps/user-msg.jsx"
 
 
 
@@ -20,7 +21,7 @@ export function App() {
 
     const [filterByFromFilter, setfilterByFromFilter] = useState()
     function useFilter(filterBy) {
-        debugger
+        console.log(filterBy)
         setfilterByFromFilter(filterBy)
     }
 
@@ -47,5 +48,6 @@ export function App() {
                 <Route path="/book" element={<BookIndex />} />
             </Routes>
         </section>
+        <UserMsg />
     </Router >
 }

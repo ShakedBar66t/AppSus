@@ -24,19 +24,38 @@ export const mailService = {
     update
 }
 
-function query(filterBy = getDefaultFilter()) {
+function query(read = 'all', filterBy = getDefaultFilter()) {
     return storageService
         .query(MAIL_KEY)
         .then(mails => {
-            // if (filterBy === 'starred') {
-            //     mails = mails.filter(mail => mail.stared === true);
-            // }
-            if (filterBy.txt) {
+            if (filterBy.txt && read === null) {
                 mails = mails.filter(mail => mail.body.includes(filterBy.txt));
+            }
+            if (read === 'unread') {
+                mails = mails.filter(mail => !mail.isRead);
             }
             return mails;
         });
 }
+
+// function query(filterBy = getDefaultFilter(),read='all') {
+//     debugger
+//     return storageService
+//         .query(MAIL_KEY)
+//         .then(mails => {
+//             if (filterBy.txt && read === 'all') {
+//                 // mails = mails.filter(mail => mail.body.includes(filterBy.txt));
+//             }
+//             // if (filterBy.txt && read === 'read') {
+//             //     mails = mails.filter(mail => mail.isRead === filterBy.isRead && mail.body.includes(filterBy.txt))
+//             //     // mails = mails.filter(mail => mail.body.includes(filterBy.txt))
+//             // }
+//             // else if (!filterBy.isRead) {
+//             //     mails = mails.filter(mail => mail.isRead === filterBy.isRead);
+//             // }
+//             return mails;
+//         });
+// }
 
 function getUnreadCount() {
     return mailService.query().then(mails => {
@@ -72,13 +91,12 @@ function getUnreadCount() {
 //    }
 
 function get(mailId) {
-    console.log(storageService.get(MAIL_KEY, mailId))
     return storageService.get(MAIL_KEY, mailId)
     // return axios.get(MAIL_KEY, mailId)
 }
 
 function remove(mailId) {
-    console.log(mailId)
+    // console.log(mailId)
     return storageService.remove(MAIL_KEY, mailId)
 }
 
@@ -107,7 +125,7 @@ function getEmptyMail() {
 }
 
 function getDefaultFilter() {
-    return { txt: '', maxPrice: '' }
+    return { txt: '', read: 'read' }
 }
 
 function _createMails() {
@@ -132,7 +150,7 @@ function _createMails() {
                 to: `haim@appsus.com`,
                 subject: 'Itai, נשארו רק עוד יומיים לקבל בחזרה עד 400 ₪! ⌛',
                 body: 'big test',
-                isRead: false,
+                isRead: true,
                 isChecked: false,
                 isStared: false,
                 isDeleted: false,
@@ -240,7 +258,7 @@ function _createMails() {
                 to: `user@appsus.com`,
                 subject: 'test',
                 body: 'big test',
-                isRead: false,
+                isRead: true,
                 isChecked: false,
                 isStared: false,
                 isDeleted: false,
@@ -292,7 +310,23 @@ function _createMails() {
                 id: utilService.makeId(),
                 to: `user@appsus.com`,
                 subject: 'מרגישים את הרומנטיקה באוויר? (פרסומת)',
-                body: 'big test',
+                body: `לאחר טעינת הקוד באיזור האישי בוולט
+
+                חפשו גלידת שטראוס ותוכלו להינות מההטבה
+                
+                לקבלת 20 ₪
+                מתנה >>
+                *לרכישה בחנות גלידת שטראוס בוולט, למימוש עד ליום 31.12.22.
+                
+                **המשלוח באחריות וולט, ולפי תנאי המשלוח באתר וולט.
+                
+                הודעה זו נשלחה ע"י strauss@mailing.unilever.co.il,
+                הודעה זו נשלחה אליכם מאחר והסכמתם לקבל הודעות שיווקיות מקבוצת חברות יוניליוור ישראל.
+                אם אינכם מעוניינים להמשיך לקבל הודעות באפשרותכם לבצע הסרה מרשימת התפוצה.
+                למידע נוסף אתם מוזמנים לקרוא עוד על תנאי הפרטיות שלנו.
+                קבוצת יוניליוור ישראל | גלבוע 3 | קרית שדה התעופה | 7019900 | Israel | 1-800-780-780 https://www.unilever.co.il/ | כתובת המייל שלנו לפניות-Strauss.Icecream@unilever.com
+                
+                `,
                 isRead: false,
                 isChecked: false,
                 isStared: false,
@@ -340,10 +374,16 @@ function addNewMail(recipients, subject, body) {
         isChecked: false,
         isStared: false,
         isDeleted: false,
-        sentAt: Date.now(),
+        sentAt: _getTimeString(),
         from: 'user@appsus.com',
         fullname: 'Mahatma Appsus',
     }
     return storageService.post(MAIL_KEY, newMail)
 }
 
+function _getTimeString() {
+    const date = new Date(Date.now());
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+}

@@ -4,7 +4,7 @@ const { useParams, useNavigate, Link } = ReactRouterDOM
 import { mailService } from "../services/mail.service.js"
 
 
-export function MailCompose({ setIsOpen }) {
+export function MailCompose({ setIsOpen, loadMails }) {
 
     const navigate = useNavigate()
 
@@ -16,6 +16,7 @@ export function MailCompose({ setIsOpen }) {
     function onSubmitMail(ev) {
         ev.preventDefault()
         const newMail = mailService.addNewMail(elToRef.current.value, elSubjectRef.current.value, elTextRef.current.value)
+        loadMails({ txt: '' })
         setIsOpen(false)
     }
 

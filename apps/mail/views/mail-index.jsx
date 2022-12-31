@@ -26,10 +26,17 @@ export function MailIndex({ filterByFromFilter }) {
 
     }
 
-    function loadMails(filter = filterBy) {
-        mailService.query(filter).then(mailsToUpdate => {
-            setMails(mailsToUpdate)
-        })
+    // function loadMails(filter = filterBy) {
+    //     console.log(filter)
+    //     mailService.query(filter).then(mailsToUpdate => {
+    //         setMails(mailsToUpdate)
+    //     })
+    // }
+
+    function loadMails(read = null, filter = filterBy) {
+        mailService.query(read, filter).then(mailsToUpdate => {
+            setMails(mailsToUpdate);
+        });
     }
 
 
@@ -45,7 +52,7 @@ export function MailIndex({ filterByFromFilter }) {
             </div>
             <div className={(isComposeOpen) ? "mail-compose-container" : "mail-compose-container hidden"}>
                 {/* <div className="mail-compose-container"> */}
-                {isComposeOpen && <MailCompose useFilter={useFilter} setIsOpen={setIsComposeOpen} />}
+                {isComposeOpen && <MailCompose filterByFromFilter={filterByFromFilter} setIsOpen={setIsComposeOpen} loadMails={loadMails} />}
             </div>
         </div>
     </div >

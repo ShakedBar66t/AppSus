@@ -12,6 +12,7 @@ export function AppHeader({ useFilter }) {
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
 
     function onSetFilter(filterBy) {
+        console.log(filterBy)
         useFilter(filterBy)
     }
 

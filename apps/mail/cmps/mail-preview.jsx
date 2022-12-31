@@ -1,6 +1,7 @@
 const { useState, useEffect, Fragment } = React
 const { useParams, Link, useNavigate } = ReactRouterDOM
 
+import { showSuccessMsg, showStaredMsg } from "../../../services/event-bus.service.js"
 import { mailService } from "../services/mail.service.js"
 
 export function MailPreview({ mail, mailRead }) {
@@ -9,6 +10,18 @@ export function MailPreview({ mail, mailRead }) {
 
     const [change, setChange] = useState(true)
     const status = creatStatus()
+    const [filteredMails, setFilteredMails] = useState([]);
+    // useEffect(() => {
+    //     setFilteredMails(filterMailsByIsRead(mails, mail.isRead));
+    // }, [mail.isRead]);
+
+    useEffect(() => {
+        setChange(!change)
+    }, [])
+
+    // function filterMailsByIsRead(mails, isRead) {
+    //     return mails.filter(mail => mail.isRead === isRead);
+    //   }
 
     function creatStatus() {
         const params = useParams()
@@ -36,14 +49,18 @@ export function MailPreview({ mail, mailRead }) {
 
     function generalChange(mail, keyToChange) {
         if (keyToChange === 'isRead') {
-            debugger
+            (mail.isRead) ? showSuccessMsg('Conversation marked as unread.') : showSuccessMsg('Conversation marked as read.')
             mail[keyToChange] = !mail[keyToChange]
             mailService.update(mail)
             mailRead(!mail.isRead)
             return
         }
         if (keyToChange === 'isDeleted' && mail.isDeleted) {
+            showSuccessMsg('Messages have been deleted.')
             mailService.remove(mail.id)
+        }
+        else if (keyToChange === 'isDeleted') {
+            showSuccessMsg('Conversation moved to Bin.')
         }
         mail[keyToChange] = !mail[keyToChange]
         mailService.update(mail)

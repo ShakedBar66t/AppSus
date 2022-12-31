@@ -4,11 +4,11 @@ export function MailFilter({ onSetFilter }) {
 
     const [filterBy, setFilterBy] = useState({ txt: '' });
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const elInputRef = useRef({ txt: '' });
+    const elInputRef = useRef({ txt: '' })
 
     function handleChange(event) {
         const { value } = event.target;
-        setFilterBy({ txt: value });
+        setFilterBy({ txt: value })
     }
 
 
@@ -16,6 +16,13 @@ export function MailFilter({ onSetFilter }) {
         event.preventDefault();
         console.log(filterBy); // print the value of the filterBy object
         console.log(onSetFilter); // print the value of the onSetFilter function
+        onSetFilter(filterBy);
+    }
+
+    function onIsReadFilter(event, value) {
+        event.preventDefault()
+        console.log(value) // print the value of the filterBy object
+        setFilterBy({ read: value })
         onSetFilter(filterBy);
     }
 
@@ -49,9 +56,9 @@ export function MailFilter({ onSetFilter }) {
                             isDropdownOpen ? 'menu flex active clean-list' : 'menu flex clean-list'
                         }
                     >
-                        <li className="menu-item btn-nav">All</li>
-                        <li className="menu-item btn-nav">Read</li>
-                        <li className="menu-item btn-nav">Unread</li>
+                        <li onClick={() => onIsReadFilter(event, 'all')} className="menu-item btn-nav">All</li>
+                        <li onClick={() => onIsReadFilter(event, 'read')} className="menu-item btn-nav">Read</li>
+                        <li onClick={() => onIsReadFilter(event, 'unread')} className="menu-item btn-nav">Unread</li>
                     </ul>
                 </div>
             </form>
