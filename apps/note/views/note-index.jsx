@@ -11,11 +11,11 @@ export function NoteIndex() {
 
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
     const [notes, setNotes] = useState([])
-    const [updateFromAdd, setupdateFromAdd] = useState([false])
+    const [updateFromAdd, setupdateFromAdd] = useState(false)
 
     useEffect(() => {
         loadNotes()
-    }, [filterBy])
+    }, [updateFromAdd, filterBy])
 
     function updateNotes() {
         setupdateFromAdd(!updateFromAdd)
