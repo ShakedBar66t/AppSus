@@ -48,6 +48,6 @@ export function App() {
                 <Route path="/book" element={<BookIndex />} />
             </Routes>
         </section>
-        <UserMsg />
+
     </Router >
 }

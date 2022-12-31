@@ -1,11 +1,18 @@
 .mail-details {
-    width: 85vw;
-    padding: 2rem 3rem;
+    width: 84vw;
+    padding: 3rem 4rem;
     display: flex;
     flex-direction: column;
     text-align: center;
-    /* justify-content: space-evenly; */
-    border: 1px solid black;
+    border: 1px solid rgb(197, 193, 193);
+    background-color: rgba(234, 229, 238, 0.171);
+}
+
+.mail-details>* {
+    background-color: #6767670d;
+    border-right: 1px solid rgb(197, 193, 193);
+    border-left: 1px solid rgb(197, 193, 193);
+    ;
 }
 
 .cmps-container {
@@ -24,7 +31,8 @@
 }
 
 .details-header-container nav {
-    /* background-color: lightblue; */
+    border-top: 1px solid rgb(197, 193, 193);
+    ;
     display: flex;
     align-content: flex-end;
 }
@@ -57,7 +65,8 @@
 
 .detail-body {
     padding-top: 45px;
-    /* display: flex; */
     flex-grow: 1;
     background-color: #4444440d;
+    border-bottom: 1px solid rgb(197, 193, 193);
+    ;
 }
