@@ -10,3 +10,7 @@
 .mail-nav-phone {
     display: none;
 }
+
+.tr-head>* {
+    display: none;
+}
