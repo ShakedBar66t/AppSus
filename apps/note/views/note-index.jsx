@@ -18,7 +18,7 @@ export function NoteIndex() {
     }, [updateFromAdd, filterBy])
 
     function updateNotes() {
-        setUpdateFromAdd(!updateFromAdd)
+        setupdateFromAdd(!updateFromAdd)
     }
 
     function loadNotes() {
