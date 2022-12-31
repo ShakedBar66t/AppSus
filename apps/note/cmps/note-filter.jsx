@@ -1,37 +1,46 @@
 import { noteService } from "../services/note.service.js"
 
-const { useState, setState } = React
-
+const { useState, useRef, useEffect } = React
 export function NoteFilter({onSetFilter}) {
 
 
     const [filterByToEdit, setFilterByToEdit] = useState(noteService.getDefaultFilter())
+    const elInputRef = useRef(null)
 
-    function handleChange({ target }) {
-        const field = target.name
-        const value = target.value
-        setFilterByToEdit((prevFilter) => {
-            return { ...prevFilter.filterByToEdit, [field]: value }
-        })
+    useEffect(() => {
+        elInputRef.current.focus()
+    }, [])
+
+    useEffect(() => {
+        // onSetFilter(filterByToEdit)
+    }, [filterByToEdit])
+
+    function handleChange({target}){
+        let {value, name:field} = target
+        setFilterByToEdit((prevFilter) => ({...prevFilter, [field]: value}))
     }
-
-    function onFilter(ev) {
+    
+    function onSubmitFilter(ev){
         ev.preventDefault()
         onSetFilter(filterByToEdit)
     }
 
+
+
     return <section className="note-filter">
-        hello from note filter
         <form
             className="form-filter flex align-center"
-            onSubmit={onFilter}>
+            onSubmit={onSubmitFilter}>
             <label htmlFor="name">
                 <input
+                    className="note-filter-item"
                     type="text"
                     name="name"
                     placeholder="Search Note"
-                    className="note-filter-item"
-                    onChange={handleChange} />
+                    value={filterByToEdit.title}
+                    ref={elInputRef}
+                    onChange={handleChange}
+                     />
             </label>
         </form>
     </section>

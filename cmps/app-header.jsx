@@ -3,6 +3,7 @@ const { createContext, useState } = React
 
 import { MailFilter } from "../apps/mail/cmps/mail-filter.jsx"
 import { mailService } from "../apps/mail/services/mail.service.js"
+import { NoteFilter } from "../apps/note/cmps/note-filter.jsx"
 
 
 export function AppHeader({ useFilter }) {
@@ -31,6 +32,7 @@ export function AppHeader({ useFilter }) {
         </Link>
         <FilterContext.Provider value={filterBy}>
             {location.pathname.startsWith('/mail') && <MailFilter onSetFilter={onSetFilter} />}
+            {location.pathname.startsWith('/note') && <NoteFilter onSetFilter={onSetFilter} />}
         </FilterContext.Provider>
 
         <nav>

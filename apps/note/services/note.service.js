@@ -94,11 +94,18 @@ function remove(noteId) {
 }
 
 function getDefaultFilter() {
-    return { txt: '' }
+    return { title: '' }
 }
 
-function query() {
+function query(filterBy = getDefaultFilter()) {
     return storageService.query(NOTE_KEY)
+    .then(notes => {
+        if (filterBy.title) {
+            const regex = new RegExp(filterBy.title, 'i')
+            notes = notes.filter(note => regex.test(note.info.title))
+        }
+        return notes
+    })
 }
 
 function _saveToStorage(notes) {
