@@ -1,6 +1,5 @@
 .app-header{
-    height: 80px;
-    background-color: whitesmoke;
+    background-color: whitesmoke ;
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -9,12 +8,12 @@
     width: 100%;
     left: 0;
     padding: 0.7rem;
-    border-bottom: 0.1rem solid var(--light-grey);
+    border-bottom: 0.1rem solid #e8e8e8f3;
     margin-bottom: 1.2rem;
     position: relative;
 }
 
-.header-warpper{
+.header-wrapper{
     width: 100%;
     display: flex;
     flex-direction: row;
