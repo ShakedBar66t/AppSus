@@ -25,10 +25,6 @@ export const mailService = {
     addNote
 }
 
-function query(read = 'all', filterBy = getDefaultFilter()) {
-    return storageService
-        .query(MAIL_KEY)
-}
 /////////// הוספה של שקד
 
 function addNote(note) {
@@ -50,34 +46,18 @@ function addNote(note) {
 function query(filterBy = getDefaultFilter()) {
     return storageService.query(MAIL_KEY)
         .then(mails => {
-            if (filterBy.txt) {
-                mails = mails.filter(mail => mail.body.includes(filterBy.txt));
+            mails = mails.filter(mail => mail.body.includes(filterBy.txt));
+            if (filterBy.isRead) {
+                mails = mails.filter(mail => mail.isRead)
             }
-            if (read === 'unread') {
-                mails = mails.filter(mail => !mail.isRead);
+            else if ((filterBy.isRead === null)) mails = mails.filter(mail => mail.body.includes(filterBy.txt));
+            else if (filterBy.isRead === false) {
+                mails = mails.filter(mail => !mail.isRead)
             }
             return mails;
         });
 }
 
-// function query(filterBy = getDefaultFilter(),read='all') {
-//     debugger
-//     return storageService
-//         .query(MAIL_KEY)
-//         .then(mails => {
-//             if (filterBy.txt && read === 'all') {
-//                 // mails = mails.filter(mail => mail.body.includes(filterBy.txt));
-//             }
-//             // if (filterBy.txt && read === 'read') {
-//             //     mails = mails.filter(mail => mail.isRead === filterBy.isRead && mail.body.includes(filterBy.txt))
-//             //     // mails = mails.filter(mail => mail.body.includes(filterBy.txt))
-//             // }
-//             // else if (!filterBy.isRead) {
-//             //     mails = mails.filter(mail => mail.isRead === filterBy.isRead);
-//             // }
-//             return mails;
-//         });
-// }
 
 function getUnreadCount() {
     return mailService.query().then(mails => {
@@ -90,27 +70,6 @@ function getUnreadCount() {
         }, 0);
     });
 }
-
-// function query(filterBy = getDefaultFilter()) {
-//     return storageService.query(MAIL_KEY)
-//         .then(mails => {
-//             if (filterBy === 'starred') {
-//                 mails = mails.filter(mail => mail.stared === true)
-//             }
-//             // if (filterBy==='') {
-//             //     mails = mails.filter(mail => mail.listPrice.amount <= filterBy.maxPrice)
-//             // }
-//             return mails
-//         })
-// }
-
-// const filterby = {
-//     status: 'inbox/sent/trash/draft',
-//     txt: 'puki', // no need to support complex text search
-//     isRead: true, // (optional property, if missing: show all)
-//     isStared: true, // (optional property, if missing: show all)
-//     lables: ['important', 'romantic'] // has any of the labels
-//    }
 
 function get(mailId) {
     return storageService.get(MAIL_KEY, mailId)
@@ -147,7 +106,7 @@ function getEmptyMail() {
 }
 
 function getDefaultFilter() {
-    return { txt: '', read: 'read' }
+    return { txt: '' }
 }
 
 function _createMails() {
@@ -361,12 +320,6 @@ function _createMails() {
         ]
     }
     utilService.saveToStorage(MAIL_KEY, mails)
-}
-
-function _createMail() {
-    const mail = getEmptyMail()
-    mail.id = utilService.makeId()
-    return mail
 }
 
 function getNextMailId(mailId) {

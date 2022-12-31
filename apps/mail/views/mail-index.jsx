@@ -26,18 +26,18 @@ export function MailIndex({ filterByFromFilter }) {
 
     }
 
-    // function loadMails(filter = filterBy) {
-    //     console.log(filter)
-    //     mailService.query(filter).then(mailsToUpdate => {
-    //         setMails(mailsToUpdate)
-    //     })
-    // }
-
-    function loadMails(read = null, filter = filterBy) {
-        mailService.query(read, filter).then(mailsToUpdate => {
-            setMails(mailsToUpdate);
-        });
+    function loadMails(filter = filterBy) {
+        console.log(filter)
+        mailService.query(filter).then(mailsToUpdate => {
+            setMails(mailsToUpdate)
+        })
     }
+
+    // function loadMails(read = null, filter = filterBy) {
+    //     mailService.query(read, filter).then(mailsToUpdate => {
+    //         setMails(mailsToUpdate);
+    //     });
+    // }
 
 
     return <div className="mail-index ">

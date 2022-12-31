@@ -21,7 +21,7 @@ export function App() {
 
     const [filterByFromFilter, setfilterByFromFilter] = useState()
     function useFilter(filterBy) {
-        console.log(filterBy)
+        debugger
         setfilterByFromFilter(filterBy)
     }
 
