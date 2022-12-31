@@ -20,8 +20,27 @@ export const mailService = {
     getNextMailId,
     getPrevMailId,
     addNewMail,
-    update
+    update,
+    addNote
 }
+
+/////////// הוספה של שקד
+
+function addNote(note){
+    let emails = loadFromStorage()
+    const newEmail = note
+    newEmail.id = utilService.makeId()
+    newEmail.body = newEmail.info.txt
+    newEmail.from = { fullName: 'from note', email: 'note@appsus.co'}
+    newEmail.isPin = false
+    newEmail.status = 'inbox'
+    newEmail.isRead = false
+    newEmail.sentAt = new Date()
+    emails.unshift(newEmail)
+    saveToStorage(emails)
+}
+
+/////////////
 
 function query(filterBy = getDefaultFilter()) {
     return storageService.query(MAIL_KEY)

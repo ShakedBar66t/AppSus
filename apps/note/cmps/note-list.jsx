@@ -1,6 +1,6 @@
 import { NotePreview } from "./note-preview.jsx"
 
-export function NoteList({ notes, onRemoveNote, onCopyNote }) {
+export function NoteList({ notes, onRemoveNote, onCopyNote, onPinNote, onSendAsEmail }) {
     console.log(notes)
 
     function onUpdateNote(noteId) {
@@ -8,17 +8,14 @@ export function NoteList({ notes, onRemoveNote, onCopyNote }) {
     }
 
     return <section className="note-list" >
-        {
-            notes.map(note => <ul
-                key={note.id}
-                className="note"
-                onClick={() => onUpdateNote(note.id)}>
-                <NotePreview
-                    note={note}
-                    onRemoveNote={onRemoveNote}
-                    onCopyNote={onCopyNote}  />
-            </ul>)
-        }
+        {notes.map((note) => (
+            <NotePreview
+                note={note}
+                onRemoveNote={onRemoveNote}
+                onCopyNote={onCopyNote}
+                onPinNote={onPinNote}
+                onSendAsEmail={onSendAsEmail} />
+        ))}
     </section >
 
 }

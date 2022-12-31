@@ -1,6 +1,7 @@
 
+const { Link } = ReactRouterDOM
 
-export function NotePreview({ note, onRemoveNote, onCopyNote }) {
+export function NotePreview({ note, onRemoveNote, onCopyNote, onPinNote, onSendAsEmail }) {
 
     const todos = note.info.todos
     // if(!note.info.todos) return <h1>Loading..</h1>
@@ -19,38 +20,55 @@ export function NotePreview({ note, onRemoveNote, onCopyNote }) {
         return todoList
     }
 
-    const { id, type, url, backgroundColor, title } = note
+    const media = note.info.url
+    console.log(media)
 
-    
-    
-    
-    return <article className="note-preview gallery-item" style={{ backgroundColor: note.backgroundColor }}>
-        {url && (
-            <div className="url-container">
-                {url.includes('image') && <img src={note.info.url}/>}
 
+
+    return (
+        <Link
+            to={`/note/edit/${note.id}`}
+            className="note-preview gallery-item"
+            style={{ backgroundColor: note.backgroundColor }}>
+            {media && (
+                <div className="url-container">
+                    {media.includes('image') && <img src={media} />}
+                    {media.includes('video') && (
+                        <video width="320" height="240" controls>
+                            <source src={media} type="video/mp4" />
+                        </video>
+                    )}
+                    {media.includes('audio') && (
+                        <div className="audio-container">
+                            <audio controls>
+                                <source src={media} type="audio/mpeg"></source>
+                            </audio>
+                        </div>
+                    )}
+                </div>
+            )}
+            <div className="text-container">
+                <h2>{note.info.title}</h2>
+                <h1>{note.info.txt}</h1>
+                <h2>{note.info.label}</h2>
+                {finalList}
             </div>
-        )}
-        <h2>{note.info.title}</h2>
-        <h1>{note.info.txt}</h1>
-        <h2>{note.info.label}</h2>
-        <img src={note.info.url} />
-        {finalList}
-        <div className="note-btn">
-            <div className="btn-flex">
-                <button onClick={() => onRemoveNote(note.id)}>
-                    <i className="fa-solid fa-2x fa-trash-can"></i>
-                </button>
-                <button onClick={() => onCopyNote(note.id)}>
-                    <i className="fa-solid fa-2x fa-clipboard"></i>
-                </button>
-                <button onClick={() => onPinNote(note.id)}>
-                    <i className="fa-solid fa-2x fa-map-pin"></i>
-                </button>
-                <button onClick={() => onSendAsEmail(note.id)}>
-                    <i className="fa-solid fa-2x fa-envelope"></i>
-                </button>
+            <div className="note-btn">
+                <div className="btn-flex">
+                    <button onClick={(e) => onRemoveNote(e, note.id)}>
+                        <i className="fa-solid fa-2x fa-trash-can"></i>
+                    </button>
+                    <button onClick={(e) => onCopyNote(e, note.id)}>
+                        <i className="fa-solid fa-2x fa-clipboard"></i>
+                    </button>
+                    <button onClick={(e) => onPinNote(e, note.id)}>
+                        <i className="fa-solid fa-2x fa-map-pin"></i>
+                    </button>
+                    <button onClick={(e) => onSendAsEmail(e, note.id)}>
+                        <i className="fa-solid fa-2x fa-envelope"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-    </article>
+        </Link>
+    )
 }

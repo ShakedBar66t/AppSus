@@ -1,5 +1,6 @@
 import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
+import { mailService } from '../../mail/services/mail.service.js'
 
 
 
@@ -11,7 +12,36 @@ export const noteService = {
     getDefaultFilter,
     remove,
     saveNote,
-    copyNote
+    copyNote,
+    pinNote,
+    sendAsEmail
+}
+
+function sendAsEmail(id){
+    getById(id).then((note) => {
+        mailService.addNote(note)
+    })
+}
+
+function pinNote(noteId) {
+    const notes = _loadFromStorage()
+    const note = notes.find((note) => note.id === noteId)
+    const noteIdx = notes.findIndex((note) => note.id === noteId)
+    notes.splice(noteIdx, 1)
+    if (note.isPin === true) {
+        note.isPin = false
+        const newNotes = []
+        notes.filter((note) => ((note.isPin = true) ? newNotes.push(note) : null))
+        newNotes.push(note)
+        notes.filter((note) => ((note.isPin = false) ? newNotes.push(note) : null))
+        _saveToStorage(newNotes)
+        return Promise.resolve(newNotes)
+    } else {
+        note.isPin = true
+        notes.unshift(note)
+        _saveToStorage(notes)
+        return Promise.resolve(notes)
+    }
 }
 
 
@@ -26,7 +56,7 @@ function _update(noteToUpdate) {
     return Promise.resolve()
 }
 
-function copyNote(noteId){
+function copyNote(noteId) {
     let notes = _loadFromStorage()
     const note = notes.find((note) => note.id === noteId)
     const newNote = Object.assign({}, note)
