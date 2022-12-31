@@ -1,5 +1,5 @@
 const { useLocation, Link } = ReactRouterDOM
-const { useState, useEffect } = React
+const { createContext, useState, useEffect } = React
 
 import { MailFilter } from "../apps/mail/cmps/mail-filter.jsx"
 import { mailService } from "../apps/mail/services/mail.service.js"
@@ -9,6 +9,7 @@ import { HeaderModal } from "./header-modal.jsx"
 
 export function AppHeader({ useFilter }) {
 
+    const FilterContext = createContext();
     const location = useLocation()
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
     const [modal, setModal] = useState('hide-modal')
@@ -50,6 +51,10 @@ export function AppHeader({ useFilter }) {
                         </h1>
                     </div>
                 </Link>
+                <FilterContext.Provider value={filterBy}>
+                    {location.pathname.startsWith('/mail') && <MailFilter onSetFilter={onSetFilter} />}
+                    {location.pathname.startsWith('/note') && <NoteFilter onSetFilter={onSetFilter} />}
+                </FilterContext.Provider>
                 <div className="navbar-wrapper flex align-center">
                     <button onClick={toggleModal}>
                         <i className="fa fa-bars"></i>
