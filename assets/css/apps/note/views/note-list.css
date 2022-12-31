@@ -12,6 +12,13 @@
     margin: 0;
 }
 
+.gallery-item {
+    height: max-content;
+    border-radius: 1rem;
+    padding: 1rem;
+    border: 0.15rem solid #e8e8e8f3;
+}
+
 
 @media only screen and (min-width: 640px) {
     .note-list  {

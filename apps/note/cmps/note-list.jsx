@@ -11,6 +11,7 @@ export function NoteList({ notes, onRemoveNote, onCopyNote, onPinNote, onSendAsE
         {notes.map((note) => (
             <NotePreview
                 note={note}
+                key={note.id}
                 onRemoveNote={onRemoveNote}
                 onCopyNote={onCopyNote}
                 onPinNote={onPinNote}

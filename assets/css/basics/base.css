@@ -25,11 +25,7 @@ a {
     color: inherit;
 }
 
-.gallery-item {
-    height: max-content;
-    border-radius: 1rem;
-    border: 0.15rem solid #e8e8e8f3;
-}
+
 
 .note-btn {
     margin-top: 20px;
