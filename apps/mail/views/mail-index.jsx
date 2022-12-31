@@ -2,8 +2,9 @@ const { useState, useEffect, useRef } = React
 
 import { MailList } from "../cmps/mail-list.jsx"
 import { MailNav } from "../cmps/mail-nav.jsx"
-import { MailCompose } from '../views/mail-compose.jsx';
+import { MailCompose } from '../views/mail-compose.jsx'
 import { mailService } from "../services/mail.service.js"
+import { MailFilter } from "../cmps/mail-filter.jsx"
 
 
 export function MailIndex({ filterByFromFilter }) {
@@ -13,12 +14,12 @@ export function MailIndex({ filterByFromFilter }) {
     const [unreadMailsCount, setUnreadMailsCount] = useState()
 
     useEffect(() => {
-        setFilterBy(filterByFromFilter);
-        loadMails();
+        setFilterBy(filterByFromFilter)
+        loadMails()
         mailService.getUnreadCount().then(count => {
-            setUnreadMailsCount(count);
-        });
-    }, [filterBy, filterByFromFilter]);
+            setUnreadMailsCount(count)
+        })
+    }, [filterBy, filterByFromFilter])
 
     function mailRead(isRead) {
         if (isRead) setUnreadMailsCount(unreadMailsCount + 1)
@@ -35,15 +36,15 @@ export function MailIndex({ filterByFromFilter }) {
 
     // function loadMails(read = null, filter = filterBy) {
     //     mailService.query(read, filter).then(mailsToUpdate => {
-    //         setMails(mailsToUpdate);
-    //     });
+    //         setMails(mailsToUpdate)
+    //     })
     // }
 
 
     return <div className="mail-index ">
 
         <div className="filter-container">
-            {/* <MailFilter /> */}
+            <MailFilter />
         </div>
         <div className="cmps-container">
             <div className="nav-container">  <MailNav setIsOpen={setIsComposeOpen} loadMails={loadMails} unreadMailsCount={unreadMailsCount} /></div>

@@ -1,3 +1,5 @@
+import { MailFilter } from "./mail-filter.jsx";
+import { MailNav } from "./mail-nav.jsx";
 import { MailPreview } from "./mail-preview.jsx"
 const { useParams, Link } = ReactRouterDOM
 
@@ -8,12 +10,7 @@ export function MailList({ mails, mailRead }) {
         <table border="0">
             <thead>
                 <tr className="tr-head">
-                    <th></th>
-                    <th></th>
-                    <th>from</th>
-                    <th>mail</th>
-                    <th>time</th>
-                    <th>time</th>
+                    <th className="mail-nav-phone"><MailNav /> <MailFilter /> </th>
                 </tr>
             </thead>
             <tbody>

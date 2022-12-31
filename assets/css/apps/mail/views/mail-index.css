@@ -9,12 +9,12 @@
 
 .nav-container {
     height: 90vh;
-    width: 13vw;
+    width: 14vw;
 }
 
 .mail-list-container {
     z-index: 0;
-    right: 1%;
+    width: 100%;
 }
 
 .mail-compose-container {
@@ -29,4 +29,138 @@
 
 .hidden {
     display: none;
+}
+
+.filter-container {
+    display: none;
+}
+
+
+
+@media (max-width: 400px) {
+
+    * {
+        font-size: 15px;
+    }
+
+    .app-header {
+        display: none;
+    }
+
+    .mail-index {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .mail-filter-form {
+        display: none;
+    }
+
+    .nav-container {
+        display: none;
+    }
+
+    /* filter  */
+    .filter-container {
+        display: block;
+        width: 100vw;
+
+    }
+
+    .mail-filter {
+        width: 100%;
+        background-color: aquamarine;
+    }
+
+    .mail-filter-form {
+        width: 100%;
+        right: 0;
+    }
+
+
+    /* table  */
+    td.envelope,
+    td.check-box {
+        display: none;
+    }
+
+    .mail-preview:hover td:last-child,
+    .mail-preview:hover td:nth-last-child(2) {
+        display: none;
+    }
+
+    .mail-preview:hover {
+        box-shadow: none;
+
+    }
+
+    .mail-preview:hover .date,
+    .mail-preview:hover .last-td,
+    td.sender-img {
+        display: block;
+    }
+
+    .mail-preview {
+        display: grid;
+        grid-template-columns: 1fr 5fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: 70px;
+    }
+
+    .date {
+        grid-column: 1;
+        grid-row: 1;
+        text-align: left;
+    }
+
+    .subject {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .sender {
+        grid-column: 2;
+        grid-row: 1;
+        text-align: right;
+    }
+
+    .sender-img {
+        grid-column: 3;
+        grid-row: 1 / span 2;
+        align-self: center;
+        justify-self: center;
+    }
+
+    .preview {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    th:not(.mail-nav-phone) {
+        display: none;
+    }
+
+    /* //////////////////////////////////// the nav bar 
+    th.mail-nav-phone {
+        display: block;
+    } */
+
+    /* details */
+    div.mail-details {
+        height: 80vh;
+        width: 90vw;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        border: 1px solid rgb(197, 193, 193);
+        background-color: rgba(234, 229, 238, 0.171);
+    }
+
+    nav span.back-btn {
+        display: block;
+    }
+
+
 }
