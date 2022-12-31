@@ -30,8 +30,6 @@ export function App() {
             <AppHeader useFilter={useFilter} />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-
                 <Route path="/mail/inbox/" element={<MailIndex filterByFromFilter={filterByFromFilter} />} >
                     <Route path="/mail/inbox/:starred" element={<MailIndex />} />
                     <Route path="/mail/inbox/:sent" element={<MailIndex />} />

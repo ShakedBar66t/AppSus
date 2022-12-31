@@ -7,7 +7,6 @@ const { useState, useRef } = React
 const { Link } = ReactRouterDOM
 
 export function AddNote({ updateNotes }) {
-    // console.log(onAddNote)
     const titleRef = useRef(null)
     const txtRef = useRef(null)
     const colorRef = useRef(null)

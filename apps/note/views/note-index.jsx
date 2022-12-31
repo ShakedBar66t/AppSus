@@ -11,7 +11,7 @@ export function NoteIndex() {
 
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
     const [notes, setNotes] = useState([])
-    const [updateFromAdd, setUpdateFromAdd] = useState(false)
+    const [updateFromAdd, setupdateFromAdd] = useState(false)
 
     useEffect(() => {
         loadNotes()

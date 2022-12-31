@@ -1,0 +1,30 @@
+.header-modal{
+    align-items: center;
+    background-color: whitesmoke;
+    padding: 0.5rem;
+}
+
+.header-modal i {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.header-modal i:hover {
+    background-color:#999999 ;
+    border-radius: 0.5rem;
+    color: white;
+}
+
+.book-pick{
+    color: #DB4437;
+}
+
+.mail-pick{
+    color: #F4B400;
+}
+
+.note-pick {
+    color: #4285F4;
+}
